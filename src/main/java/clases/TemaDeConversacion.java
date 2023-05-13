@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class TemaDeConversacion {
 	private String tema;
-	private ArrayList<String> respuesta;
+	private ArrayList<String> respuestaPosibles;
 	private byte respuestaCorrecta ;
 	
 	public TemaDeConversacion(String tema, ArrayList<String> respuesta, byte respuestaCorrecta) {
 		super();
 		this.tema = tema;
-		this.respuesta = respuesta;
+		this.respuestaPosibles = respuestaPosibles;
 		this.respuestaCorrecta = respuestaCorrecta;
 	}
 
@@ -22,12 +22,12 @@ public class TemaDeConversacion {
 		this.tema = tema;
 	}
 
-	public ArrayList<String> getRespuesta() {
-		return respuesta;
+	public ArrayList<String> getRespuestaPosibles() {
+		return respuestaPosibles;
 	}
 
-	public void setRespuesta(ArrayList<String> respuesta) {
-		this.respuesta = respuesta;
+	public void setRespuesta(ArrayList<String> respuestaPosibles) {
+		this.respuestaPosibles = respuestaPosibles;
 	}
 
 	public byte getRespuestaCorrecta() {
@@ -40,7 +40,7 @@ public class TemaDeConversacion {
 
 	@Override
 	public String toString() {
-		return "TemaDeConversacion [tema=" + tema + ", respuesta=" + respuesta + ", respuestaCorrecta="
+		return "TemaDeConversacion [tema=" + tema + ", respuestas posibles=" + respuestaPosibles + ", respuestaCorrecta="
 				+ respuestaCorrecta + "]";
 	}
 	
