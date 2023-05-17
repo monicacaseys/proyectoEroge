@@ -1,15 +1,20 @@
 package clases;
 
-public class Jugador extends Presentacion {
+import java.util.HashSet;
 
-	public Jugador(String nombre, byte edad, String personalidad, String gustos) {
+import enums.Gusto;
+
+public class Jugador extends Persona {
+
+	public Jugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) {
 		super(nombre, edad, personalidad, gustos);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "Jugador " +super.toString();
-	}
+	 public static Jugador crearNuevoJugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) {
+	        return new Jugador(nombre, edad, personalidad, gustos);
+	    }
+
 	
 	
 	

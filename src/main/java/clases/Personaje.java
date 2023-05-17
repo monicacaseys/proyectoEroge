@@ -1,21 +1,43 @@
 package clases;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashSet;
 
-public class Personaje extends Presentacion{
+import enums.Gusto;
+import enums.TipoPersonaje;
+
+public class Personaje extends Persona {
 
 	private int nivelAmor;
-	private ArrayList<TemaDeConversacion> temasConversacion;
-	private ArrayList<Cita> citasDesbloqueadas;
-	
-	
-	public Personaje(String nombre, byte edad, String personalidad, String gustos, int nivelAmor,
-			ArrayList<TemaDeConversacion> temasConversacion) {
+	private TipoPersonaje tipoPersonaje;
+	private ArrayList<TemaDeConversacion> temas;
+	private HashSet<CitaIdeal> citasIdeales;
+	private boolean poliamoroso;
+	private BufferedImage imagen;
+
+	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, int nivelAmor,
+			TipoPersonaje tipoPersonaje, ArrayList<TemaDeConversacion> temas, HashSet<CitaIdeal> citasIdeales,
+			boolean poliamoroso, BufferedImage imagen) {
 		super(nombre, edad, personalidad, gustos);
 		this.nivelAmor = nivelAmor;
-		this.temasConversacion = temasConversacion;
+		this.tipoPersonaje = tipoPersonaje;
+		this.temas = new ArrayList<>();
+		this.citasIdeales = new HashSet<>();
+		this.poliamoroso = poliamoroso;
+		this.imagen = imagen;
 	}
 
+	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos,
+			TipoPersonaje tipoPersonaje,boolean poliamoroso) {
+		super(nombre, edad, personalidad, gustos);
+		this.nivelAmor = 50;
+		this.tipoPersonaje = tipoPersonaje;
+		this.temas = new ArrayList<>();
+		
+		this.poliamoroso = poliamoroso;
+
+	}
 	public int getNivelAmor() {
 		return nivelAmor;
 	}
@@ -24,23 +46,64 @@ public class Personaje extends Presentacion{
 		this.nivelAmor = nivelAmor;
 	}
 
-	public ArrayList<TemaDeConversacion> getTemasConversacion() {
-		return temasConversacion;
+	public TipoPersonaje getTipoPersonaje() {
+		return tipoPersonaje;
 	}
 
-	public void setRespuesta(ArrayList<TemaDeConversacion> temasConversacion) {
-		this.temasConversacion = temasConversacion;
+	public void setTipoPersonaje(TipoPersonaje tipoPersonaje) {
+		this.tipoPersonaje = tipoPersonaje;
 	}
 
-
-	
-	@Override
-	public String toString() {
-		return "Pesonaje "+super.toString() +" [nivelAmor=" + nivelAmor + ", temasConversacion=" + temasConversacion + "]";
+	public ArrayList<TemaDeConversacion> getTemas() {
+		return temas;
 	}
-	
-	
-	
-	
-	
+
+	public void setTemas(ArrayList<TemaDeConversacion> temas) {
+		this.temas = temas;
+	}
+
+	public HashSet<CitaIdeal> getCitasIdeales() {
+		return citasIdeales;
+	}
+
+	public void setCitasIdeales(HashSet<CitaIdeal> citasIdeales) {
+		this.citasIdeales = citasIdeales;
+	}
+
+	public boolean isPoliamoroso() {
+		return poliamoroso;
+	}
+
+	public void setPoliamoroso(boolean poliamoroso) {
+		this.poliamoroso = poliamoroso;
+	}
+
+	public BufferedImage getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(BufferedImage imagen) {
+		this.imagen = imagen;
+	}
+
+	 public void agregarTemaDeConversacion(TemaDeConversacion tema) {
+	        temas.add(tema);
+	    }
+	 public void morir(Personaje personaje) {
+	        if (nivelAmor < 0) {
+	          
+	            System.out.println(super.getNombre() + " ha muerto.");
+	        }
+	    }
+
+	    public void aumentarAmor() {
+	        nivelAmor += 15;
+	        System.out.println(super.getNombre() + " ha aumentado su nivel de amor a " + nivelAmor);
+	    }
+
+	    public void disminuirAmor() {
+	        nivelAmor -= 15;
+	        System.out.println(super.getNombre() + " ha disminuido su nivel de amor a " + nivelAmor);
+	    }
+
 }
