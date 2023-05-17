@@ -19,9 +19,6 @@ public class Ventana extends JFrame{
 		if(clase.equals(PantallaInicio.class)) {
 			this.setContentPane(new PantallaInicio(this));
 		}
-		if(clase.equals(PantallaJugar.class)) {
-			this.setContentPane(new PantallaJugar(this));
-		}
 		if(clase.equals(PantallaNuevoJugador.class)) {
 			this.setContentPane(new PantallaNuevoJugador(this));
 		}

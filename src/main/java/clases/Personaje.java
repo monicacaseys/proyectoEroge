@@ -10,6 +10,7 @@ import enums.TipoPersonaje;
 public class Personaje extends Persona {
 
 	private int nivelAmor;
+	private byte nivel;
 	private TipoPersonaje tipoPersonaje;
 	private ArrayList<TemaDeConversacion> temas;
 	private HashSet<CitaIdeal> citasIdeales;
@@ -17,10 +18,11 @@ public class Personaje extends Persona {
 	private BufferedImage imagen;
 
 	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, int nivelAmor,
-			TipoPersonaje tipoPersonaje, ArrayList<TemaDeConversacion> temas, HashSet<CitaIdeal> citasIdeales,
-			boolean poliamoroso, BufferedImage imagen) {
+			byte nivel, TipoPersonaje tipoPersonaje, ArrayList<TemaDeConversacion> temas,
+			HashSet<CitaIdeal> citasIdeales, boolean poliamoroso, BufferedImage imagen) {
 		super(nombre, edad, personalidad, gustos);
 		this.nivelAmor = nivelAmor;
+		this.nivel = nivel;
 		this.tipoPersonaje = tipoPersonaje;
 		this.temas = new ArrayList<>();
 		this.citasIdeales = new HashSet<>();
@@ -29,21 +31,29 @@ public class Personaje extends Persona {
 	}
 
 	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos,
-			TipoPersonaje tipoPersonaje,boolean poliamoroso) {
+			TipoPersonaje tipoPersonaje, boolean poliamoroso) {
 		super(nombre, edad, personalidad, gustos);
 		this.nivelAmor = 50;
+		this.nivel = 1;
 		this.tipoPersonaje = tipoPersonaje;
 		this.temas = new ArrayList<>();
-		
 		this.poliamoroso = poliamoroso;
-
 	}
+
 	public int getNivelAmor() {
 		return nivelAmor;
 	}
 
 	public void setNivelAmor(int nivelAmor) {
 		this.nivelAmor = nivelAmor;
+	}
+
+	public byte getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(byte nivel) {
+		this.nivel = nivel;
 	}
 
 	public TipoPersonaje getTipoPersonaje() {
@@ -86,24 +96,25 @@ public class Personaje extends Persona {
 		this.imagen = imagen;
 	}
 
-	 public void agregarTemaDeConversacion(TemaDeConversacion tema) {
-	        temas.add(tema);
-	    }
-	 public void morir(Personaje personaje) {
-	        if (nivelAmor < 0) {
-	          
-	            System.out.println(super.getNombre() + " ha muerto.");
-	        }
-	    }
+	public void agregarTemaDeConversacion(TemaDeConversacion tema) {
+		temas.add(tema);
+	}
 
-	    public void aumentarAmor() {
-	        nivelAmor += 15;
-	        System.out.println(super.getNombre() + " ha aumentado su nivel de amor a " + nivelAmor);
-	    }
+	public void morir(Personaje personaje) {
+		if (nivelAmor < 0) {
+			System.out.println(super.getNombre() + " ha muerto.");
+		}
+	}
 
-	    public void disminuirAmor() {
-	        nivelAmor -= 15;
-	        System.out.println(super.getNombre() + " ha disminuido su nivel de amor a " + nivelAmor);
+	public void aumentarAmor() {
+		nivelAmor += 15;
+		System.out.println(super.getNombre() + " ha aumentado su nivel de amor a " + nivelAmor);
+	}
+
+	public void disminuirAmor() {
+		nivelAmor -= 15;
+		System.out.println(super.getNombre() + " ha disminuido su nivel de amor a " +nivelAmor);
+
 	    }
 
 }

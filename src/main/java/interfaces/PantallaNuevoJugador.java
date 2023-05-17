@@ -2,19 +2,26 @@ package interfaces;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 
 import clases.Jugador;
 import enums.Gusto;
 
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
@@ -33,6 +40,8 @@ public class PantallaNuevoJugador extends JPanel {
 	private JCheckBox checkBoxBeatBox;
 	private JCheckBox checkBoxCosplay;
 	
+
+	
 	public PantallaNuevoJugador(Ventana v) {
 		this.ventana=v;
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -42,6 +51,8 @@ public class PantallaNuevoJugador extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
+		
+		
 
 		JLabel tituloDatos = new JLabel("RELLENAME");
 		tituloDatos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 23));
@@ -179,6 +190,8 @@ public class PantallaNuevoJugador extends JPanel {
 		gbc_botonAceptar.gridx = 1;
 		gbc_botonAceptar.gridy = 9;
 		add(botonAceptar, gbc_botonAceptar);
+		
+		
 	}
 
 
