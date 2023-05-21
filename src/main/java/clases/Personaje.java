@@ -1,11 +1,16 @@
 package clases;
 
 import java.awt.image.BufferedImage;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 
 import enums.Gusto;
 import enums.TipoPersonaje;
+import utils.PersonajeDAO;
+
+import java.util.Random;
 
 public class Personaje extends Persona {
 
@@ -16,29 +21,22 @@ public class Personaje extends Persona {
 	private HashSet<CitaIdeal> citasIdeales;
 	private boolean poliamoroso;
 	private BufferedImage imagen;
+	private int indiceTemaActual;
 
-	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, int nivelAmor,
-			byte nivel, TipoPersonaje tipoPersonaje, ArrayList<TemaDeConversacion> temas,
-			HashSet<CitaIdeal> citasIdeales, boolean poliamoroso, BufferedImage imagen) {
-		super(nombre, edad, personalidad, gustos);
-		this.nivelAmor = nivelAmor;
-		this.nivel = nivel;
-		this.tipoPersonaje = tipoPersonaje;
-		this.temas = new ArrayList<>();
-		this.citasIdeales = new HashSet<>();
-		this.poliamoroso = poliamoroso;
-		this.imagen = imagen;
+	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, TipoPersonaje tipoPersonaje,
+	        ArrayList<TemaDeConversacion> temas, boolean poliamoroso, int nivelAmor,byte nivel) throws SQLException { //debo añadir nivelAmor y nivel?
+	    super(nombre, edad, personalidad, gustos);
+	    this.nivelAmor = nivelAmor;
+	    this.nivel = nivel;
+	    this.tipoPersonaje = tipoPersonaje;
+	    this.temas = temas;
+	    this.indiceTemaActual = 0;
+	    this.poliamoroso = poliamoroso;
 	}
 
-	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos,
-			TipoPersonaje tipoPersonaje, boolean poliamoroso) {
-		super(nombre, edad, personalidad, gustos);
-		this.nivelAmor = 50;
-		this.nivel = 1;
-		this.tipoPersonaje = tipoPersonaje;
-		this.temas = new ArrayList<>();
-		this.poliamoroso = poliamoroso;
-	}
+
+
+
 
 	public int getNivelAmor() {
 		return nivelAmor;
@@ -64,13 +62,7 @@ public class Personaje extends Persona {
 		this.tipoPersonaje = tipoPersonaje;
 	}
 
-	public ArrayList<TemaDeConversacion> getTemas() {
-		return temas;
-	}
 
-	public void setTemas(ArrayList<TemaDeConversacion> temas) {
-		this.temas = temas;
-	}
 
 	public HashSet<CitaIdeal> getCitasIdeales() {
 		return citasIdeales;
@@ -95,11 +87,25 @@ public class Personaje extends Persona {
 	public void setImagen(BufferedImage imagen) {
 		this.imagen = imagen;
 	}
+//dudo
+	public TemaDeConversacion obtenerTemaDeConversacionAleatorio() {
+        Random random = new Random();
+        int indiceAleatorio = random.nextInt(temas.size());
+        return temas.get(indiceAleatorio);
+    }
 
-	public void agregarTemaDeConversacion(TemaDeConversacion tema) {
-		temas.add(tema);
-	}
-
+	   public Pregunta obtenerSiguientePregunta() {
+	        TemaDeConversacion temaActual = temas.get(indiceTemaActual);
+	        Pregunta siguientePregunta = temaActual.obtenerPreguntaSiguiente();
+	        
+	        // Incrementar el índice del tema actual
+	        indiceTemaActual++;
+	        if (indiceTemaActual >= temas.size()) {
+	            indiceTemaActual = 0;
+	        }
+	        
+	        return siguientePregunta;
+	    }
 	public void morir(Personaje personaje) {
 		if (nivelAmor < 0) {
 			System.out.println(super.getNombre() + " ha muerto.");
@@ -113,8 +119,16 @@ public class Personaje extends Persona {
 
 	public void disminuirAmor() {
 		nivelAmor -= 15;
-		System.out.println(super.getNombre() + " ha disminuido su nivel de amor a " +nivelAmor);
+		System.out.println(super.getNombre() + " ha disminuido su nivel de amor a " + nivelAmor);
 
-	    }
+	}
+
+	public ArrayList<TemaDeConversacion> getTemas() {
+		return temas;
+	}
+
+	public void setTemas(ArrayList<TemaDeConversacion> temas) {
+		this.temas = temas;
+	}
 
 }

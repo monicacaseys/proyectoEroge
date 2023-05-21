@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
 import java.awt.Color;
+import javax.swing.Icon;
 
 public class PantallaInicio extends JPanel {
 	
@@ -24,18 +25,18 @@ public class PantallaInicio extends JPanel {
 		  
 	        GridBagLayout gridBagLayout = new GridBagLayout();
 	        gridBagLayout.columnWidths = new int[]{0, 151, 0, 0};
-	        gridBagLayout.rowHeights = new int[]{0, 41, 39, 39, 0, 0, 0};
+	        gridBagLayout.rowHeights = new int[]{0, 38, 41, 39, 39, 0, 0, 0};
 	        gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
-	        gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+	        gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 	        setLayout(gridBagLayout);
 
-	        JLabel fondo = new JLabel(new ImageIcon(PantallaInicio.class.getResource("/imagenes/tierra.png")));
+	        JLabel fondo = new JLabel(new ImageIcon(PantallaInicio.class.getResource("/imagenes/tierra2.png")));
 			fondo.setLayout(new GridBagLayout());
 			GridBagConstraints gbc_fondo = new GridBagConstraints();
 			gbc_fondo.gridx = 0;
 			gbc_fondo.gridy = 0;
 			gbc_fondo.gridwidth = 3;
-			gbc_fondo.gridheight = 6;
+			gbc_fondo.gridheight = 7;
 			gbc_fondo.fill = GridBagConstraints.BOTH;
 			add(fondo, gbc_fondo);
 			
@@ -52,7 +53,7 @@ public class PantallaInicio extends JPanel {
 	        gbc_botonJugar.fill = GridBagConstraints.BOTH;
 	        gbc_botonJugar.insets = new Insets(0, 0, 5, 5);
 	        gbc_botonJugar.gridx = 1;
-	        gbc_botonJugar.gridy = 1;
+	        gbc_botonJugar.gridy = 2;
 	        add(botonJugar, gbc_botonJugar);
 	        
 	        JButton botonContinuar = new JButton("CONTINUAR");
@@ -60,7 +61,7 @@ public class PantallaInicio extends JPanel {
 	        GridBagConstraints gbc_botonContinuar = new GridBagConstraints();
 	        gbc_botonContinuar.insets = new Insets(0, 0, 5, 5);
 	        gbc_botonContinuar.gridx = 1;
-	        gbc_botonContinuar.gridy = 2;
+	        gbc_botonContinuar.gridy = 3;
 	        add(botonContinuar, gbc_botonContinuar);
 
 	        JButton botonRanking = new JButton("VER RANKING");
@@ -70,7 +71,7 @@ public class PantallaInicio extends JPanel {
 	        gbc_botonRanking.fill = GridBagConstraints.BOTH;
 	        gbc_botonRanking.insets = new Insets(0, 0, 5, 5);
 	        gbc_botonRanking.gridx = 1;
-	        gbc_botonRanking.gridy = 3;
+	        gbc_botonRanking.gridy = 4;
 	        add(botonRanking, gbc_botonRanking);
 	        
 	        JButton botonExit = new JButton("EXIT");
@@ -84,7 +85,7 @@ public class PantallaInicio extends JPanel {
 	        GridBagConstraints gbc_botonExit = new GridBagConstraints();
 	        gbc_botonExit.insets = new Insets(0, 0, 5, 5);
 	        gbc_botonExit.gridx = 1;
-	        gbc_botonExit.gridy = 4;
+	        gbc_botonExit.gridy = 5;
 	        add(botonExit, gbc_botonExit);
 	}
 	

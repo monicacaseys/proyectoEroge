@@ -26,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import javax.swing.JCheckBox;
+import java.awt.Color;
 
 public class PantallaNuevoJugador extends JPanel {
 	
@@ -39,157 +40,129 @@ public class PantallaNuevoJugador extends JPanel {
 	private JCheckBox checkBoxPetanca;
 	private JCheckBox checkBoxBeatBox;
 	private JCheckBox checkBoxCosplay;
+	private JLabel lblNewLabel_1;
 	
 
 	
 	public PantallaNuevoJugador(Ventana v) {
 		this.ventana=v;
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 154, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 40, 37, 36, 38, 37, 0, 0, 0, 0, -33, 0 };
-		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-				Double.MIN_VALUE };
-		setLayout(gridBagLayout);
+		setLayout(null);
 		
 		
 
 		JLabel tituloDatos = new JLabel("RELLENAME");
-		tituloDatos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 23));
-		GridBagConstraints gbc_tituloDatos = new GridBagConstraints();
-		gbc_tituloDatos.gridwidth = 2;
-		gbc_tituloDatos.insets = new Insets(0, 0, 5, 5);
-		gbc_tituloDatos.gridx = 1;
-		gbc_tituloDatos.gridy = 1;
-		add(tituloDatos, gbc_tituloDatos);
+		tituloDatos.setForeground(new Color(255, 255, 255));
+		tituloDatos.setBounds(15, 53, 220, 39);
+		tituloDatos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 29));
+		add(tituloDatos);
 
 		JLabel labelNombre = new JLabel("NOMBRE");
-		labelNombre.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
-		GridBagConstraints gbc_labelNombre = new GridBagConstraints();
-		gbc_labelNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_labelNombre.gridx = 1;
-		gbc_labelNombre.gridy = 2;
-		add(labelNombre, gbc_labelNombre);
+		labelNombre.setForeground(new Color(0, 255, 255));
+		labelNombre.setBackground(Color.RED);
+		labelNombre.setBounds(142, 149, 93, 19);
+		labelNombre.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
+		add(labelNombre);
 
 		textoNombre = new JTextField();
-		GridBagConstraints gbc_textoNombre = new GridBagConstraints();
-		gbc_textoNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_textoNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textoNombre.gridx = 2;
-		gbc_textoNombre.gridy = 2;
-		add(textoNombre, gbc_textoNombre);
+		textoNombre.setBounds(325, 149, 137, 19);
+		add(textoNombre);
 		textoNombre.setColumns(10);
 
 		JLabel labelEdad = new JLabel("EDAD");
-		labelEdad.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
-		GridBagConstraints gbc_labelEdad = new GridBagConstraints();
-		gbc_labelEdad.insets = new Insets(0, 0, 5, 5);
-		gbc_labelEdad.gridx = 1;
-		gbc_labelEdad.gridy = 3;
-		add(labelEdad, gbc_labelEdad);
+		labelEdad.setBackground(new Color(128, 0, 64));
+		labelEdad.setForeground(new Color(0, 255, 255));
+		labelEdad.setBounds(152, 167, 73, 39);
+		labelEdad.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
+		add(labelEdad);
 
 		textoEdad = new JTextField();
-		GridBagConstraints gbc_textoEdad = new GridBagConstraints();
-		gbc_textoEdad.insets = new Insets(0, 0, 5, 5);
-		gbc_textoEdad.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textoEdad.gridx = 2;
-		gbc_textoEdad.gridy = 3;
-		add(textoEdad, gbc_textoEdad);
+		textoEdad.setBounds(325, 177, 137, 19);
+		add(textoEdad);
 		textoEdad.setColumns(10);
 
 		JLabel labelPersonalidad = new JLabel("PERSONALIDAD");
-		labelPersonalidad.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
-		GridBagConstraints gbc_labelPersonalidad = new GridBagConstraints();
-		gbc_labelPersonalidad.insets = new Insets(0, 0, 5, 5);
-		gbc_labelPersonalidad.gridx = 1;
-		gbc_labelPersonalidad.gridy = 4;
-		add(labelPersonalidad, gbc_labelPersonalidad);
+		labelPersonalidad.setForeground(new Color(0, 230, 230));
+		labelPersonalidad.setBounds(54, 200, 161, 30);
+		labelPersonalidad.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
+		add(labelPersonalidad);
 
 		textoPersonalidad = new JTextField();
-		GridBagConstraints gbc_textoPersonalidad = new GridBagConstraints();
-		gbc_textoPersonalidad.insets = new Insets(0, 0, 5, 5);
-		gbc_textoPersonalidad.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textoPersonalidad.gridx = 2;
-		gbc_textoPersonalidad.gridy = 4;
-		add(textoPersonalidad, gbc_textoPersonalidad);
+		textoPersonalidad.setBounds(325, 206, 137, 19);
+		add(textoPersonalidad);
 		textoPersonalidad.setColumns(10);
 
 		JLabel labelGustos = new JLabel("GUSTOS");
-		labelGustos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
-		GridBagConstraints gbc_labelGustos = new GridBagConstraints();
-		gbc_labelGustos.insets = new Insets(0, 0, 5, 5);
-		gbc_labelGustos.gridx = 1;
-		gbc_labelGustos.gridy = 5;
-		add(labelGustos, gbc_labelGustos);
+		labelGustos.setForeground(new Color(0, 255, 255));
+		labelGustos.setBounds(102, 245, 93, 32);
+		labelGustos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
+		add(labelGustos);
 		
 		checkboxPlaya = new JCheckBox("Playa");
-		GridBagConstraints gbc_checkboxPlaya = new GridBagConstraints();
-		gbc_checkboxPlaya.insets = new Insets(0, 0, 5, 5);
-		gbc_checkboxPlaya.gridx = 1;
-		gbc_checkboxPlaya.gridy = 7;
-		add(checkboxPlaya, gbc_checkboxPlaya);
+		checkboxPlaya.setFont(new Font("Tahoma", Font.BOLD, 14));
+		checkboxPlaya.setBounds(112, 312, 73, 21);
+		add(checkboxPlaya);
 
 		chekboxCine = new JCheckBox("Cine");
-		GridBagConstraints gbc_chekboxCine = new GridBagConstraints();
-		gbc_chekboxCine.insets = new Insets(0, 0, 5, 5);
-		gbc_chekboxCine.gridx = 1;
-		gbc_chekboxCine.gridy = 6;
-		add(chekboxCine, gbc_chekboxCine);
+		chekboxCine.setFont(new Font("Tahoma", Font.BOLD, 14));
+		chekboxCine.setBounds(209, 282, 73, 20);
+		add(chekboxCine);
 
 		checkBoxSushi = new JCheckBox("Sushi");
-		GridBagConstraints gbc_checkBoxSushi = new GridBagConstraints();
-		gbc_checkBoxSushi.insets = new Insets(0, 0, 5, 5);
-		gbc_checkBoxSushi.gridx = 2;
-		gbc_checkBoxSushi.gridy = 6;
-		add(checkBoxSushi, gbc_checkBoxSushi);
+		checkBoxSushi.setFont(new Font("Tahoma", Font.BOLD, 14));
+		checkBoxSushi.setBounds(112, 283, 73, 19);
+		add(checkBoxSushi);
 
 		
 		checkBoxPetanca = new JCheckBox("Petanca");
-		GridBagConstraints gbc_checkBoxPetanca = new GridBagConstraints();
-		gbc_checkBoxPetanca.insets = new Insets(0, 0, 5, 5);
-		gbc_checkBoxPetanca.gridx = 2;
-		gbc_checkBoxPetanca.gridy = 7;
-		add(checkBoxPetanca, gbc_checkBoxPetanca);
+		checkBoxPetanca.setFont(new Font("Tahoma", Font.BOLD, 14));
+		checkBoxPetanca.setBounds(309, 282, 103, 20);
+		add(checkBoxPetanca);
 
 		checkBoxBeatBox = new JCheckBox("Beatboxing");
-		GridBagConstraints gbc_checkBoxBeatBox = new GridBagConstraints();
-		gbc_checkBoxBeatBox.insets = new Insets(0, 0, 5, 5);
-		gbc_checkBoxBeatBox.gridx = 1;
-		gbc_checkBoxBeatBox.gridy = 8;
-		add(checkBoxBeatBox, gbc_checkBoxBeatBox);
+		checkBoxBeatBox.setFont(new Font("Tahoma", Font.BOLD, 14));
+		checkBoxBeatBox.setBounds(309, 312, 120, 21);
+		add(checkBoxBeatBox);
 
 		checkBoxCosplay = new JCheckBox("Cosplay");
-		GridBagConstraints gbc_checkBoxCosplay = new GridBagConstraints();
-		gbc_checkBoxCosplay.insets = new Insets(0, 0, 5, 5);
-		gbc_checkBoxCosplay.gridx = 2;
-		gbc_checkBoxCosplay.gridy = 8;
-		add(checkBoxCosplay, gbc_checkBoxCosplay);
+		checkBoxCosplay.setFont(new Font("Tahoma", Font.BOLD, 14));
+		checkBoxCosplay.setBounds(209, 312, 87, 21);
+		add(checkBoxCosplay);
 
 
 		JButton botonAceptar = new JButton("Aceptar");
+		botonAceptar.setBackground(new Color(192, 192, 192));
+		botonAceptar.setBounds(342, 381, 120, 30);
 		botonAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String nombre = textoNombre.getText();
-				int edad = Integer.parseInt(textoEdad.getText());
-				String personalidad = textoPersonalidad.getText();
-				HashSet<Gusto> gustos = obtenerGustosSeleccionados(); // Método para obtener los gustos seleccionados
+				try {
+		            String nombre = textoNombre.getText();
+		            int edad = Integer.parseInt(textoEdad.getText());
+		            String personalidad = textoPersonalidad.getText();
+		            HashSet<Gusto> gustos = obtenerGustosSeleccionados(); // Método para obtener los gustos seleccionados
 
-				Jugador nuevoJugador = Jugador.crearNuevoJugador(nombre, edad, personalidad, gustos);
-				// ... hacer algo con el nuevo jugador ...
+		            Jugador nuevoJugador = Jugador.crearNuevoJugador(nombre, edad, personalidad, gustos);
+		            // ... hacer algo con el nuevo jugador ...
 
-				 JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Jugador creado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-			}
+		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Jugador creado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+		        ventana.cambiarAPantalla(PantallaHistoria.class);
+				} catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Error: La edad debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+		        } catch (Exception ex) {
+		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+			
 		});
 		
 		
-		botonAceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		GridBagConstraints gbc_botonAceptar = new GridBagConstraints();
-		gbc_botonAceptar.gridwidth = 2;
-		gbc_botonAceptar.insets = new Insets(0, 0, 5, 5);
-		gbc_botonAceptar.gridx = 1;
-		gbc_botonAceptar.gridy = 9;
-		add(botonAceptar, gbc_botonAceptar);
+		botonAceptar.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
+		add(botonAceptar);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(PantallaNuevoJugador.class.getResource("/imagenes/bocaa - copia.png")));
+		lblNewLabel_1.setBounds(0, 0, 600, 500);
+		add(lblNewLabel_1);
 		
 		
 	}
@@ -221,6 +194,4 @@ public class PantallaNuevoJugador extends JPanel {
 
 		return gustosSeleccionados;
 	}
-	
-
 }

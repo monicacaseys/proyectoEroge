@@ -1,7 +1,8 @@
 package enums;
 
 public enum TipoPersonaje {
-	MOUNSTRO,
+	
+	MONSTRUO,
 	ROBOT
 
 }
