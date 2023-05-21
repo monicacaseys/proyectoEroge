@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import clases.Personaje;
 import clases.Pregunta;
+import enums.Gusto;
 
 import java.awt.GridBagLayout;
 
@@ -25,6 +26,8 @@ public class PantallaEscena extends JPanel {
 	private JLabel labelPersonaje;
 	private JLabel labelNivelAmor;
 	private JButton botonRespuesta;
+	private JLabel labelLugar;
+
 
 	public PantallaEscena(Ventana v, final Personaje personaje) {
 		this.ventana = v;
@@ -35,6 +38,14 @@ public class PantallaEscena extends JPanel {
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
+		
+		labelLugar = new JLabel();
+		GridBagConstraints gbc_labelLugar = new GridBagConstraints();
+		gbc_labelLugar.insets = new Insets(0, 0, 5, 5);
+		gbc_labelLugar.gridx = 2;
+		gbc_labelLugar.gridy = 2;
+		add(labelLugar, gbc_labelLugar);
+
 
 		// Obtener primera pregunta
 		preguntaActual = personaje.obtenerSiguientePregunta();
@@ -102,4 +113,9 @@ public class PantallaEscena extends JPanel {
 		}
 		labelNivelAmor.setText("Nivel de Amor: " + personaje.getNivelAmor());
 	}
+	public void mostrarLugar(Gusto gusto) {
+	    String textoLugar = "El encuentro tiene lugar en " + gusto.toString();
+	    labelLugar.setText(textoLugar);
+	}
+
 }
