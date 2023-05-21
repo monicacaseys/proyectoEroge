@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -115,6 +116,12 @@ private ArrayList<Personaje> cargarPersonajesDesdeBD() {
 			this.setContentPane(new PantallaLugar(this));
 		}
 
+		if (clase.equals(PantallaEscena.class)) {
+		    Random random = new Random();
+		    int indiceAleatorio = random.nextInt(personajes.size());
+		    Personaje personaje = personajes.get(indiceAleatorio);
+		    this.setContentPane(new PantallaEscena(this, personaje));
+		}
 		this.getContentPane().setVisible(true);
 
 	}
