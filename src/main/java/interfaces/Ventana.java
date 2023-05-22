@@ -2,6 +2,7 @@ package interfaces;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -10,6 +11,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 import clases.Personaje;
+import clases.Pregunta;
 import clases.TemaDeConversacion;
 import enums.Gusto;
 import enums.TipoPersonaje;
@@ -18,6 +20,7 @@ import utils.PersonajeDAO;
 public class Ventana extends JFrame {
 
 	private ArrayList<Personaje> personajes;
+    private Gusto gustoElegido;
 
 	public Ventana() {
 		this.setSize(600, 500);
@@ -77,9 +80,17 @@ private ArrayList<Personaje> cargarPersonajesDesdeBD() {
             for (Personaje personaje : personajes) {
                 System.out.println(personaje);
             }
+            
+            Pregunta pregunta1 = new Pregunta("¿Cuál es tu color favorito?",
+                    new ArrayList<>(Arrays.asList("Rojo", "Azul", "Verde")), "Azul");
 
-            // Crear una lista vacía de temas de conversación
-            ArrayList<TemaDeConversacion> temas = new ArrayList<>();
+            Pregunta pregunta2 = new Pregunta("¿Cuál es tu comida favorita?",
+                    new ArrayList<>(Arrays.asList("Pizza", "Hamburguesa", "Sushi")), "Sushi");
+
+            // Crear tema de conversación
+            TemaDeConversacion temas = new TemaDeConversacion();
+            temas.agregarPregunta(pregunta2);
+            temas.agregarPregunta(pregunta1);
 
             try {
                 // Crear instancia de Personaje con los datos obtenidos
@@ -125,4 +136,13 @@ private ArrayList<Personaje> cargarPersonajesDesdeBD() {
 		this.getContentPane().setVisible(true);
 
 	}
+	 public void setGustoElegido(Gusto gustoElegido) {
+	        this.gustoElegido = gustoElegido;
+	    }
+
+	public Gusto getGustoElegido() {
+		return gustoElegido;
+	}
+
+	
 }

@@ -27,41 +27,42 @@ public class PantallaEscena extends JPanel {
 	private JLabel labelNivelAmor;
 	private JButton botonRespuesta;
 	private JLabel labelLugar;
+	private JLabel labelTexto;
 
 
 	public PantallaEscena(Ventana v, final Personaje personaje) {
 		this.ventana = v;
 		this.personaje = personaje;
+		Gusto gustoElegido = ventana.getGustoElegido();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 85, 119, 162, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 87, 91, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 87, 91, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
+
+
 		
-		labelLugar = new JLabel();
-		GridBagConstraints gbc_labelLugar = new GridBagConstraints();
-		gbc_labelLugar.insets = new Insets(0, 0, 5, 5);
-		gbc_labelLugar.gridx = 2;
-		gbc_labelLugar.gridy = 2;
-		add(labelLugar, gbc_labelLugar);
-
-
-		// Obtener primera pregunta
-		preguntaActual = personaje.obtenerSiguientePregunta();
+		
+		labelTexto = new JLabel("El encuentro tiene lugar en " + gustoElegido.toString()); //obtener el gusto elegido
+		GridBagConstraints gbc_labelTexto = new GridBagConstraints();
+		gbc_labelTexto.insets = new Insets(0, 0, 5, 5);
+		gbc_labelTexto.gridx = 1;
+		gbc_labelTexto.gridy = 1;
+		add(labelTexto, gbc_labelTexto);
 
 		this.labelPersonaje = new JLabel(personaje.getNombre());
 		GridBagConstraints gbc_labelPersonaje = new GridBagConstraints();
 		gbc_labelPersonaje.insets = new Insets(0, 0, 5, 5);
 		gbc_labelPersonaje.gridx = 1;
-		gbc_labelPersonaje.gridy = 1;
+		gbc_labelPersonaje.gridy = 2;
 		add(labelPersonaje, gbc_labelPersonaje);
 
 		this.labelNivelAmor = new JLabel("Nivel de Amor: " + personaje.getNivelAmor());
 		GridBagConstraints gbc_labelNivelAmor = new GridBagConstraints();
 		gbc_labelNivelAmor.insets = new Insets(0, 0, 5, 5);
 		gbc_labelNivelAmor.gridx = 2;
-		gbc_labelNivelAmor.gridy = 1;
+		gbc_labelNivelAmor.gridy = 2;
 		add(labelNivelAmor, gbc_labelNivelAmor);
 		gbc_labelNivelAmor.gridwidth = 2;
 		gbc_labelNivelAmor.insets = new Insets(0, 0, 5, 5);
@@ -73,13 +74,13 @@ public class PantallaEscena extends JPanel {
 		GridBagConstraints gbc_preguntaLabel = new GridBagConstraints();
 		gbc_preguntaLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_preguntaLabel.gridx = 1;
-		gbc_preguntaLabel.gridy = 3;
+		gbc_preguntaLabel.gridy = 4;
 		add(preguntaLabel, gbc_preguntaLabel);
 
 		for (final String respuesta : preguntaActual.getRespuestas()) {
 			botonRespuesta = new JButton(respuesta);
 			botonRespuesta.addMouseListener(new MouseAdapter() {
-				@Override
+				@Override 
 				public void mouseClicked(MouseEvent e) {
 					// Verificar respuesta
 					if (respuesta.equals(preguntaActual.getRespuestaCorrecta())) {
@@ -113,9 +114,6 @@ public class PantallaEscena extends JPanel {
 		}
 		labelNivelAmor.setText("Nivel de Amor: " + personaje.getNivelAmor());
 	}
-	public void mostrarLugar(Gusto gusto) {
-	    String textoLugar = "El encuentro tiene lugar en " + gusto.toString();
-	    labelLugar.setText(textoLugar);
-	}
+
 
 }

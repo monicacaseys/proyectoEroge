@@ -29,6 +29,8 @@ public class PantallaLugar extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gustoElegido= Gusto.PLAYA;
+				 // Establecer el gusto elegido en la instancia de Ventana
+		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
 		        ventana.cambiarAPantalla(PantallaEscena.class);
 		        
@@ -53,6 +55,8 @@ public class PantallaLugar extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gustoElegido= Gusto.CINE;
+				 // Establecer el gusto elegido en la instancia de Ventana
+		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
 		        ventana.cambiarAPantalla(PantallaEscena.class);
 			}
@@ -67,6 +71,8 @@ public class PantallaLugar extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gustoElegido= Gusto.PETANCA;
+				 // Establecer el gusto elegido en la instancia de Ventana
+		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
 		        ventana.cambiarAPantalla(PantallaEscena.class);
 			}
@@ -81,6 +87,8 @@ public class PantallaLugar extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gustoElegido= Gusto.BEATBOXING;
+				 // Establecer el gusto elegido en la instancia de Ventana
+		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
 		        ventana.cambiarAPantalla(PantallaEscena.class);
 			}
@@ -95,6 +103,8 @@ public class PantallaLugar extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gustoElegido= Gusto.COSPLAY;
+				 // Establecer el gusto elegido en la instancia de Ventana
+		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
 		        ventana.cambiarAPantalla(PantallaEscena.class);
 			}
