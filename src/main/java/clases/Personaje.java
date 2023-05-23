@@ -3,7 +3,9 @@ package clases;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.HashMap;
 
 import enums.Gusto;
@@ -22,6 +24,7 @@ public class Personaje extends Persona {
 	private boolean poliamoroso;
 	private BufferedImage imagen;
 	private int indiceTemaActual;
+	private List<Pregunta> preguntasNoRespondidas = new ArrayList<>();
 
 	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, TipoPersonaje tipoPersonaje,
 			TemaDeConversacion temas, boolean poliamoroso, int nivelAmor, byte nivel) throws SQLException { // debo
@@ -33,6 +36,8 @@ public class Personaje extends Persona {
 		this.nivel = nivel;
 		this.tipoPersonaje = tipoPersonaje;
 		this.temas = temas;
+		preguntasNoRespondidas.addAll(temas.getPreguntas());
+		Collections.shuffle(preguntasNoRespondidas);
 		this.indiceTemaActual = 0;
 		this.poliamoroso = poliamoroso;
 	}
@@ -83,6 +88,14 @@ public class Personaje extends Persona {
 
 	public void setImagen(BufferedImage imagen) {
 		this.imagen = imagen;
+	}
+
+	public Pregunta obtenerSiguientePreguntaNoRespondida() {
+		if (!preguntasNoRespondidas.isEmpty()) {
+			return preguntasNoRespondidas.remove(0);
+		} else {
+			return null; // No hay más preguntas por responder
+		}
 	}
 
 	public void morir(Personaje personaje) {

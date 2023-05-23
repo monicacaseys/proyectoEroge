@@ -15,33 +15,16 @@ public class TemaDeConversacion {
     public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
     }
-    //dudo
-    public Pregunta obtenerPreguntaAleatoria() {
-        if (!preguntas.isEmpty()) {
-            Random random = new Random();
-            int indiceAleatorio = random.nextInt(preguntas.size());
-            return preguntas.get(indiceAleatorio);
-        } else {
-            return null; // o lanza una excepción o realiza alguna otra acción en caso de que no haya preguntas disponibles
-        }
-    }
+  
+    public ArrayList<Pregunta> getPreguntas() {
+		return preguntas;
+	}
 
-    public Pregunta obtenerPreguntaSiguiente() {
-        if (!preguntas.isEmpty()) {
-            Pregunta siguientePregunta = preguntas.get(indicePreguntaActual);
-            
-            // Incrementar el índice de la pregunta actual
-            indicePreguntaActual++;
-            if (indicePreguntaActual >= preguntas.size()) {
-                indicePreguntaActual = 0;
-            }
-            
-            return siguientePregunta;
-        } else {
-            return null; // o lanza una excepción o realiza alguna otra acción en caso de que no haya preguntas disponibles
-        }
-    }
-    @Override
+	public void setPreguntas(ArrayList<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	@Override
     public String toString() {
         if (!preguntas.isEmpty()) {
             Pregunta primeraPregunta = preguntas.get(0);

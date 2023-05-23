@@ -82,10 +82,10 @@ private ArrayList<Personaje> cargarPersonajesDesdeBD() {
             }
             
             Pregunta pregunta1 = new Pregunta("¿Cuál es tu color favorito?",
-                    new ArrayList<>(Arrays.asList("Rojo", "Azul", "Verde")), "Azul");
+                    new ArrayList<>(Arrays.asList("Rojo", "Azul")), "Azul");
 
             Pregunta pregunta2 = new Pregunta("¿Cuál es tu comida favorita?",
-                    new ArrayList<>(Arrays.asList("Pizza", "Hamburguesa", "Sushi")), "Sushi");
+                    new ArrayList<>(Arrays.asList("Pizza", "Sushi")), "Sushi");
 
             // Crear tema de conversación
             TemaDeConversacion temas = new TemaDeConversacion();
