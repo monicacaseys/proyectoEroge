@@ -15,7 +15,7 @@ public class Persona {
 			this.nombre = nombre;
 			this.edad = edad;
 			this.personalidad = personalidad;
-			this.gustos = new HashSet<>();
+			this.gustos =gustos;
 		}
 
 		public String getNombre() {

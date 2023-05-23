@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import clases.Personaje;
 import clases.Pregunta;
+import clases.TemaDeConversacion;
 import enums.Gusto;
 
 import java.awt.GridBagLayout;
@@ -17,6 +18,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -129,5 +131,26 @@ public class PantallaEscena extends JPanel {
 
 	    actualizarPregunta();
 	}
+
+    public void crearTema() {
+        // Crear instancias de preguntas
+    	   
+        Pregunta pregunta1 = new Pregunta("¿Cuál es tu color favorito?",
+                new ArrayList<>(Arrays.asList("Rojo", "Azul")), "Azul");
+
+        Pregunta pregunta2 = new Pregunta("¿Cuál es tu comida favorita?",
+                new ArrayList<>(Arrays.asList("Pizza", "Sushi")), "Sushi");
+
+        // Crear instancia del TemaDeConversacion
+        TemaDeConversacion tema = new TemaDeConversacion();
+
+        // Agregar las preguntas al tema
+        tema.agregarPregunta(pregunta1);
+        tema.agregarPregunta(pregunta2);
+        // ...
+
+        // Asignar el tema de conversacion al personaje
+        personaje.setTemas(tema);
+    }
 
 }
