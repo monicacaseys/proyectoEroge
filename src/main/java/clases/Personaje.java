@@ -27,10 +27,7 @@ public class Personaje extends Persona {
 	private List<Pregunta> preguntasNoRespondidas = new ArrayList<>();
 
 	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, TipoPersonaje tipoPersonaje,
-			TemaDeConversacion temas, boolean poliamoroso, int nivelAmor, byte nivel) throws SQLException { // debo
-																											// añadir
-																											// nivelAmor
-																											// y nivel?
+			TemaDeConversacion temas, boolean poliamoroso, int nivelAmor, byte nivel) throws SQLException { 
 		super(nombre, edad, personalidad, gustos);
 		this.nivelAmor = nivelAmor;
 		this.nivel = nivel;
