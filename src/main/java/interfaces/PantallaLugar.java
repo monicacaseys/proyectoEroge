@@ -32,7 +32,7 @@ public class PantallaLugar extends JPanel {
 				 // Establecer el gusto elegido en la instancia de Ventana
 		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
-		        ventana.cambiarAPantalla(PantallaEscena.class);
+		        ventana.cambiarAPantalla(PantallaCita.class);
 		        
 			}
 		});
@@ -46,7 +46,7 @@ public class PantallaLugar extends JPanel {
 		titulo.setForeground(new Color(64, 0, 128));
 		titulo.setBounds(31, 49, 559, 61);
 		titulo.setBackground(new Color(128, 255, 0));
-		titulo.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 27));
+		titulo.setFont(new Font("Whimsy TT", Font.BOLD | Font.ITALIC, 34));
 		add(titulo);
 		add(btnPlaya);
 		
@@ -58,7 +58,7 @@ public class PantallaLugar extends JPanel {
 				 // Establecer el gusto elegido en la instancia de Ventana
 		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
-		        ventana.cambiarAPantalla(PantallaEscena.class);
+		        ventana.cambiarAPantalla(PantallaCita.class);
 			}
 		});
 		btnCine.setBackground(new Color(255, 128, 192));
@@ -74,7 +74,7 @@ public class PantallaLugar extends JPanel {
 				 // Establecer el gusto elegido en la instancia de Ventana
 		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
-		        ventana.cambiarAPantalla(PantallaEscena.class);
+		        ventana.cambiarAPantalla(PantallaCita.class);
 			}
 		});
 		btnPetanca.setBackground(new Color(255, 128, 192));
@@ -90,7 +90,7 @@ public class PantallaLugar extends JPanel {
 				 // Establecer el gusto elegido en la instancia de Ventana
 		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
-		        ventana.cambiarAPantalla(PantallaEscena.class);
+		        ventana.cambiarAPantalla(PantallaCita.class);
 			}
 		});
 		btnBeatbox.setBackground(new Color(255, 128, 192));
@@ -106,7 +106,7 @@ public class PantallaLugar extends JPanel {
 				 // Establecer el gusto elegido en la instancia de Ventana
 		        ventana.setGustoElegido(gustoElegido);
 				// Cambiar a la pantalla Escena
-		        ventana.cambiarAPantalla(PantallaEscena.class);
+		        ventana.cambiarAPantalla(PantallaCita.class);
 			}
 		});
 		btnCosplay.setBackground(new Color(255, 128, 192));
@@ -116,7 +116,7 @@ public class PantallaLugar extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(PantallaLugar.class.getResource("/imagenes/corazon.png")));
-		lblNewLabel.setBounds(0, 0, 600, 500);
+		lblNewLabel.setBounds(0, 0, 631, 500);
 		add(lblNewLabel);
 	}
 }

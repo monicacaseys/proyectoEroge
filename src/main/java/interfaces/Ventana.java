@@ -18,9 +18,9 @@ import enums.TipoPersonaje;
 import utils.PersonajeDAO;
 
 public class Ventana extends JFrame {
-
-	private ArrayList<Personaje> personajes;
     private Gusto gustoElegido;
+    private PantallaEscena pantallaEscenaActual;
+    private Personaje personaje;
 
 	public Ventana() {
 		this.setSize(600, 500);
@@ -44,15 +44,22 @@ public class Ventana extends JFrame {
 		if (clase.equals(PantallaHistoria.class)) {
 			this.setContentPane(new PantallaHistoria(this));
 		}
-		if (clase.equals(PantallaLugar.class)) {
-			this.setContentPane(new PantallaLugar(this));
-		}
+		
 
 		if (clase.equals(PantallaEscena.class)) {
 		    Random random = new Random();
-		    int indiceAleatorio = random.nextInt(personajes.size());
-		    Personaje personaje = personajes.get(indiceAleatorio);
-		    this.setContentPane(new PantallaEscena(this, personaje));
+		    int indiceAleatorio = random.nextInt(Personaje.getTodos().size());
+		    personaje = Personaje.getTodos().get(indiceAleatorio);
+		    System.out.println(personaje);
+		    pantallaEscenaActual = new PantallaEscena(this, personaje);
+		    this.setContentPane(pantallaEscenaActual);
+		}
+		if (clase.equals(PantallaLugar.class)) {
+			this.setContentPane(new PantallaLugar(this));
+		}
+		if (clase.equals(PantallaCita.class)) {
+			
+			this.setContentPane(new PantallaCita(this, personaje));
 		}
 		this.getContentPane().setVisible(true);
 
@@ -64,6 +71,14 @@ public class Ventana extends JFrame {
 	public Gusto getGustoElegido() {
 		return gustoElegido;
 	}
+	public PantallaEscena getPantallaEscenaActual() {
+        return pantallaEscenaActual;
+    }
+	public void setPantallaEscenaActual(PantallaEscena pantallaEscena) {
+	    this.pantallaEscenaActual = pantallaEscena;
+	}
 
+
+	
 	
 }

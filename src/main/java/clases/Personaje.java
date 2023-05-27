@@ -3,6 +3,7 @@ package clases;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -33,9 +34,10 @@ public class Personaje extends Persona {
 		this.nivelAmor = nivelAmor;
 		this.nivel = nivel;
 		this.tipoPersonaje = tipoPersonaje;
-		this.temas = temas;
-		//preguntasNoRespondidas.addAll(temas.getPreguntas());
-	//	Collections.shuffle(preguntasNoRespondidas);
+		this.temas = new TemaDeConversacion();
+		crearTema();
+		preguntasNoRespondidas.addAll(temas.getPreguntas());
+	    Collections.shuffle(preguntasNoRespondidas);
 		this.indiceTemaActual = 0;
 		this.poliamoroso = poliamoroso;
 	}
@@ -86,9 +88,11 @@ public class Personaje extends Persona {
 
 	            // Crear instancia de Personaje con los datos obtenidos
 	            Personaje personaje = new Personaje(nombre, edad, personalidad, gustos, tipoPersonaje, poliamoroso, nivelAmor, nivel);
-
+	          
 	            // Agregar el personaje a la lista
 	            personajes.add(personaje);
+	            
+	            
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
@@ -147,13 +151,16 @@ public class Personaje extends Persona {
 		this.imagen = imagen;
 	}
 
+	
 	public Pregunta obtenerSiguientePreguntaNoRespondida() {
-		if (!preguntasNoRespondidas.isEmpty()) {
-			return preguntasNoRespondidas.remove(0);
-		} else {
-			return null; // No hay más preguntas por responder
-		}
+	    if (!preguntasNoRespondidas.isEmpty()) {
+	        Pregunta siguientePregunta = preguntasNoRespondidas.remove(0);
+	        return siguientePregunta;
+	    } else {
+	        return null; // No hay más preguntas por responder
+	    }
 	}
+
 
 	public void morir(Personaje personaje) {
 		if (nivelAmor < 0) {
@@ -171,7 +178,10 @@ public class Personaje extends Persona {
 		System.out.println(super.getNombre() + " ha disminuido su nivel de amor a " + nivelAmor);
 
 	}
-
+	public void aumentarNivel() {
+	    nivel++;
+	    nivelAmor = 50;
+	}
 	public TemaDeConversacion getTemas() {
 		return temas;
 	}
@@ -179,5 +189,48 @@ public class Personaje extends Persona {
 	public void setTemas(TemaDeConversacion temas) {
 		this.temas = temas;
 	}
+	public void crearTema() {
+	    TemaDeConversacion tema = new TemaDeConversacion();
+
+	    Pregunta pregunta1 = new Pregunta("¿Cuál es mi color favorito?",
+	            new ArrayList<>(Arrays.asList("Rojo", "Azul")), "Azul");
+
+	    Pregunta pregunta2 = new Pregunta("¿Cuál es mi comida favorita?",
+	            new ArrayList<>(Arrays.asList("Pizza", "Sushi")), "Pizza");
+	    Pregunta pregunta3 = new Pregunta("¿Eres misogin@?",
+	            new ArrayList<>(Arrays.asList("Si", "No")), "No");
+	    Pregunta pregunta4 = new Pregunta("¿Cuáles son las principales barreras que las mujeres enfrentan en su lucha por la igualdad de género en la sociedad actual?",
+	            new ArrayList<>(Arrays.asList("Su objetivización", "Estar locas ")), "Su objetivización");
+	    Pregunta pregunta5 = new Pregunta("Cómo podemos fomentar una educación más equitativa e inclusiva?",
+	            new ArrayList<>(Arrays.asList("Porno sin filtros", "Porno filtrado")), "Porno filtrado");
+	    Pregunta pregunta6 = new Pregunta("¿Te parece importante promover el liderazgo feminista en todos los niveles?",
+	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
+	    Pregunta pregunta7 = new Pregunta("¿Cuál es el papel de la educación en la desmantelación del patriarcado y el heterosexismo?",
+	            new ArrayList<>(Arrays.asList("No puede hacer nada", "Papel de actor importante")), "Papel de actor importante");
+	    Pregunta pregunta8 = new Pregunta("¿Cómo podemos abordar de manera efectiva la violencia de género y garantizar la seguridad y protección de las mujeres, trans y homosexuales?",
+	            new ArrayList<>(Arrays.asList("Leyes y consienciación", "Mantenerse al margen")), "Leyes y consienciación");
+	    Pregunta pregunta9 = new Pregunta("¿Una representación equitativa y diversa en los medios de comunicación?",
+	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
+	    Pregunta pregunta10 = new Pregunta("¿Aliarse y apoyar a las personas que luchan contra el patriarcado y el heterosexismo?",
+	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
+	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionales y las expectativas impuestas por el patriarcado y el heterosexismo?",
+	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
+	    
+	    tema.agregarPregunta(pregunta1);
+	    tema.agregarPregunta(pregunta2);
+	    tema.agregarPregunta(pregunta3);
+	    tema.agregarPregunta(pregunta4);
+	    tema.agregarPregunta(pregunta5);
+	    tema.agregarPregunta(pregunta6);
+	    tema.agregarPregunta(pregunta7);
+	    tema.agregarPregunta(pregunta8);
+	    tema.agregarPregunta(pregunta9);
+	    tema.agregarPregunta(pregunta10);
+	    tema.agregarPregunta(pregunta11);
+
+	    temas = tema; // Asignar el tema de conversación al personaje
+	}
+	
+
 
 }

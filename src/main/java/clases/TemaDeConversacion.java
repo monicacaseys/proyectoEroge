@@ -12,6 +12,7 @@ public class TemaDeConversacion {
         indicePreguntaActual = 0;
     }
 
+    
     public void agregarPregunta(Pregunta pregunta) {
         preguntas.add(pregunta);
     }

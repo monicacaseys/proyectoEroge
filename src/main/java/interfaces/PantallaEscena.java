@@ -9,7 +9,9 @@ import enums.Gusto;
 
 import java.awt.GridBagLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,6 +24,9 @@ import java.util.Arrays;
 import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.Color;
 
 public class PantallaEscena extends JPanel {
 	private Ventana ventana;
@@ -30,72 +35,109 @@ public class PantallaEscena extends JPanel {
 	private JLabel labelPersonaje;
 	private JLabel labelNivelAmor;
 	private JLabel labelEnunciado;
+	private JLabel labelNivel;
 	private JButton botonRespuesta1;
 	private JButton botonRespuesta2;
-	private JLabel labelTexto;
+	private JButton botonMasInfo;
+	private int nivelAmorActual;
+	private byte nivel;
+	private JLabel fondo;
+	private JButton botonCita;
 
 	public PantallaEscena(Ventana v, Personaje personaje) {
 		this.ventana = v;
 		this.personaje = personaje;
-		Gusto gustoElegido = ventana.getGustoElegido();
 
-		setLayout(new GridBagLayout());
-		
-		labelTexto = new JLabel("El encuentro tiene lugar en " + gustoElegido.toString());
-		GridBagConstraints gbc_labelTexto = new GridBagConstraints();
-		gbc_labelTexto.insets = new Insets(0, 0, 5, 5);
-		gbc_labelTexto.gridx = 1;
-		gbc_labelTexto.gridy = 0;
-		add(labelTexto, gbc_labelTexto);
+		setLayout(null);
 
 		labelPersonaje = new JLabel(personaje.getNombre());
-		GridBagConstraints gbc_labelPersonaje = new GridBagConstraints();
-		gbc_labelPersonaje.insets = new Insets(0, 0, 5, 5);
-		gbc_labelPersonaje.gridx = 1;
-		gbc_labelPersonaje.gridy = 1;
-		add(labelPersonaje, gbc_labelPersonaje);
+		labelPersonaje.setForeground(new Color(255, 255, 255));
+		labelPersonaje.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
+		labelPersonaje.setBounds(163, 32, 203, 26);
+		add(labelPersonaje);
 
-		labelNivelAmor = new JLabel("Nivel de Amor: " + personaje.getNivelAmor());
-		GridBagConstraints gbc_labelNivelAmor = new GridBagConstraints();
-		gbc_labelNivelAmor.insets = new Insets(0, 0, 5, 0);
-		gbc_labelNivelAmor.gridx = 2;
-		gbc_labelNivelAmor.gridy = 1;
-		add(labelNivelAmor, gbc_labelNivelAmor);
+		nivelAmorActual = personaje.getNivelAmor();
+		labelNivelAmor = new JLabel();
+		labelNivelAmor.setForeground(new Color(255, 255, 255));
+		labelNivelAmor.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 17));
+		labelNivelAmor.setBounds(10, 116, 196, 43);
+		add(labelNivelAmor);
 
 		labelEnunciado = new JLabel();
-		GridBagConstraints gbc_labelEnunciado = new GridBagConstraints();
-		gbc_labelEnunciado.insets = new Insets(0, 0, 5, 5);
-		gbc_labelEnunciado.gridx = 1;
-		gbc_labelEnunciado.gridy = 2;
-		add(labelEnunciado, gbc_labelEnunciado);
+		labelEnunciado.setForeground(new Color(255, 255, 255));
+		labelEnunciado.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+		labelEnunciado.setBounds(21, 305, 533, 72);
+		add(labelEnunciado);
 
 		botonRespuesta1 = new JButton();
-		GridBagConstraints gbc_botonRespuesta1 = new GridBagConstraints();
-		gbc_botonRespuesta1.insets = new Insets(0, 0, 5, 5);
-		gbc_botonRespuesta1.gridx = 1;
-		gbc_botonRespuesta1.gridy = 3;
-		add(botonRespuesta1, gbc_botonRespuesta1);
+		botonRespuesta1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
+
+		botonRespuesta1.setBounds(337, 405, 85, 21);
+		add(botonRespuesta1);
 
 		botonRespuesta2 = new JButton();
-		GridBagConstraints gbc_botonRespuesta2 = new GridBagConstraints();
-		gbc_botonRespuesta2.insets = new Insets(0, 0, 0, 5);
-		gbc_botonRespuesta2.gridx = 1;
-		gbc_botonRespuesta2.gridy = 4;
-		add(botonRespuesta2, gbc_botonRespuesta2);
+		botonRespuesta2.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+		botonRespuesta2.setBounds(144, 405, 85, 21);
+		add(botonRespuesta2);
 
-		botonRespuesta1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		botonMasInfo = new JButton("Mas Info");
+		botonMasInfo.setBackground(new Color(255, 255, 128));
+		botonMasInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 10));
+		botonMasInfo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				mostrarModalInformacion();
+			}
+		});
+		botonMasInfo.setBounds(371, 68, 78, 21);
+		add(botonMasInfo);
+
+		nivel = personaje.getNivel();
+		labelNivel = new JLabel();
+		labelNivel.setForeground(new Color(255, 255, 255));
+		labelNivel.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 14));
+		labelNivel.setBounds(10, 91, 78, 32);
+		add(labelNivel);
+
+		String rutaGif = "/imagenes/corazon.gif";
+		JLabel labelGift = new JLabel(new ImageIcon(getClass().getResource(rutaGif)));
+		labelGift.setBounds(110, 80, 69, 43);
+		add(labelGift);
+
+		fondo = new JLabel("");
+		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
+		fondo.setBounds(0, 0, 602, 503);
+		add(fondo);
+		
+		botonCita = new JButton("TENER UNA CITA");
+		botonCita.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLugar.class);
+			}
+		});
+		botonCita.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
+		botonCita.setForeground(new Color(255, 255, 255));
+		botonCita.setBounds(422, 207, 132, 88);
+		botonCita.setVisible(false); // Inicialmente oculto
+		add(botonCita);
+		
+		botonRespuesta1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				verificarRespuesta(botonRespuesta1.getText());
 			}
 		});
-
-		botonRespuesta2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		botonRespuesta2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				verificarRespuesta(botonRespuesta2.getText());
 			}
 		});
 
+		actualizarNivelAmor();
 		actualizarPregunta();
+		
 	}
 
 	private void actualizarPregunta() {
@@ -117,40 +159,72 @@ public class PantallaEscena extends JPanel {
 		}
 	}
 
-	private void verificarRespuesta(String respuestaSeleccionada) {
-	    // Verificar respuesta
-	    String respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
-
-	    if (respuestaSeleccionada.equals(respuestaCorrecta)) {
-	        JOptionPane.showMessageDialog(this, "¡Respuesta correcta!");
-	        personaje.aumentarAmor();
+	private void actualizarNivelAmor() {
+		labelNivelAmor.setText("Nivel de Amor: " + nivelAmorActual);
+		labelNivel.setText("Nivel: " + nivel);
+		repaint();
+		// Verificar si el nivel es igual a 3 y mostrar/ocultar el botón de la cita
+	    if (nivel == 3) {
+	        botonCita.setVisible(true);
 	    } else {
-	        JOptionPane.showMessageDialog(this, "Respuesta incorrecta...");
-	        personaje.disminuirAmor();
+	        botonCita.setVisible(false);
 	    }
-
-	    actualizarPregunta();
+	}
+	public void aumentarNivelAmor(int nivelAmor) {
+	    personaje.setNivelAmor(nivelAmor);
+	    actualizarNivelAmor();
 	}
 
-    public void crearTema() {
-        // Crear instancias de preguntas
-    	   
-        Pregunta pregunta1 = new Pregunta("¿Cuál es tu color favorito?",
-                new ArrayList<>(Arrays.asList("Rojo", "Azul")), "Azul");
 
-        Pregunta pregunta2 = new Pregunta("¿Cuál es tu comida favorita?",
-                new ArrayList<>(Arrays.asList("Pizza", "Sushi")), "Sushi");
+	private void verificarRespuesta(String respuestaSeleccionada) {
+		// Verificar respuesta
+		String respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
 
-        // Crear instancia del TemaDeConversacion
-        TemaDeConversacion tema = new TemaDeConversacion();
+		if (respuestaSeleccionada.equals(respuestaCorrecta)) {
+			JOptionPane.showMessageDialog(this, "¡Respuesta correcta!");
+			personaje.aumentarAmor();
+		} else {
+			JOptionPane.showMessageDialog(this, "Respuesta incorrecta...");
+			personaje.disminuirAmor();
+		}
+		nivelAmorActual = personaje.getNivelAmor();
+		actualizarNivelAmor();
+		if (nivelAmorActual >= 100) {
+			personaje.aumentarNivel();
+		}
 
-        // Agregar las preguntas al tema
-        tema.agregarPregunta(pregunta1);
-        tema.agregarPregunta(pregunta2);
-        // ...
+		actualizarPregunta();
+	}
 
-        // Asignar el tema de conversacion al personaje
-        personaje.setTemas(tema);
-    }
+	private void mostrarModalInformacion() {
+		final JDialog dialogo = new JDialog(ventana, "Información del Personaje", true);
+		dialogo.setSize(300, 300);
+		dialogo.getContentPane().setLayout(null);
 
+		JLabel etiquetaNombre = new JLabel("Nombre: " + personaje.getNombre());
+		etiquetaNombre.setBounds(20, 20, 160, 20);
+		dialogo.getContentPane().add(etiquetaNombre);
+
+		JLabel etiquetaEdad = new JLabel("Edad: " + personaje.getEdad());
+		etiquetaEdad.setBounds(20, 50, 160, 20);
+		dialogo.getContentPane().add(etiquetaEdad);
+
+		JLabel etiquetaPersonalidad = new JLabel("Personalidad: " + personaje.getPersonalidad());
+		etiquetaPersonalidad.setBounds(20, 80, 160, 20);
+		dialogo.getContentPane().add(etiquetaPersonalidad);
+
+		JLabel etiquetaGustos = new JLabel("Gustos: " + personaje.getGustos());
+		etiquetaGustos.setBounds(20, 110, 160, 20);
+		dialogo.getContentPane().add(etiquetaGustos);
+
+		JLabel etiquetaTipoPersonaje = new JLabel("Tipo de Personaje: " + personaje.getTipoPersonaje());
+		etiquetaTipoPersonaje.setBounds(20, 140, 160, 20);
+		dialogo.getContentPane().add(etiquetaTipoPersonaje);
+
+		JLabel etiquetaPoliamoroso = new JLabel("Poliamoroso: " + (personaje.isPoliamoroso() ? "Sí" : "No"));
+		etiquetaPoliamoroso.setBounds(20, 170, 160, 20);
+		dialogo.getContentPane().add(etiquetaPoliamoroso);
+
+		dialogo.setVisible(true);
+	}
 }

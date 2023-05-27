@@ -11,13 +11,15 @@ import utils.PersonajeDAO;
 
 public class Jugador extends Persona {
 	
+	private String nombreClave;
 	public Jugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) throws SQLException {
-		super(nombre, edad, personalidad, gustos);
+		super(nombre, edad, personalidad, gustos); //String nombreClave,
 		// TODO Auto-generated constructor stub
 		HashMap<String, Object> columnas = new HashMap<>();
 	    columnas.put("nombre", nombre);
 	    columnas.put("edad", edad);
 	    columnas.put("personalidad", personalidad);
+	  //columnas.put("nombreClave", nombreClave);
 	    
 	    PersonajeDAO.insertar("jugador", columnas);
 	    
