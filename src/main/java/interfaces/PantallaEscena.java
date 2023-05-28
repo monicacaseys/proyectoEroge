@@ -106,7 +106,7 @@ public class PantallaEscena extends JPanel {
 
 		fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
-		fondo.setBounds(-31, -40, 740, 607);
+		fondo.setBounds(-31, -39, 740, 607);
 		add(fondo);
 		
 		botonCita = new JButton("TENER UNA CITA");
@@ -122,6 +122,10 @@ public class PantallaEscena extends JPanel {
 		botonCita.setBounds(422, 207, 178, 63);
 		botonCita.setVisible(false); // Inicialmente oculto
 		add(botonCita);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(271, 249, 85, 21);
+		add(btnNewButton);
 		
 		botonRespuesta1.addMouseListener(new MouseAdapter() {
 			@Override
