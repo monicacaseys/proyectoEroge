@@ -43,6 +43,8 @@ public class PantallaEscena extends JPanel {
 	private byte nivel;
 	private JLabel fondo;
 	private JButton botonCita;
+	private JButton botnEscena;
+	private JButton botonCasarse;
 
 	public PantallaEscena(Ventana v, Personaje personaje) {
 		this.ventana = v;
@@ -103,12 +105,12 @@ public class PantallaEscena extends JPanel {
 		JLabel labelGift = new JLabel(new ImageIcon(getClass().getResource(rutaGif)));
 		labelGift.setBounds(110, 80, 69, 43);
 		add(labelGift);
-
+/*
 		fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
-		fondo.setBounds(-31, -39, 740, 607);
+		fondo.setBounds(-31, -43, 740, 607);
 		add(fondo);
-		
+		*/
 		botonCita = new JButton("TENER UNA CITA");
 		botonCita.setBackground(new Color(0, 159, 236));
 		botonCita.addMouseListener(new MouseAdapter() {
@@ -119,13 +121,33 @@ public class PantallaEscena extends JPanel {
 		});
 		botonCita.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
 		botonCita.setForeground(new Color(0, 0, 0));
-		botonCita.setBounds(422, 207, 178, 63);
+		botonCita.setBounds(422, 175, 178, 63);
 		botonCita.setVisible(false); // Inicialmente oculto
 		add(botonCita);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(271, 249, 85, 21);
-		add(btnNewButton);
+		botonCasarse = new JButton("ME CASOO");
+		botonCasarse.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			//	ventana.cambiarAPantalla(PantallaCasarse.class);
+			}
+		});
+		botonCasarse.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
+		botonCasarse.setBounds(20, 175, 178, 63);
+		botonCasarse.setVisible(false); // Inicialmente oculto
+		add(botonCasarse);
+		
+		botnEscena = new JButton("Ligar más");
+		botnEscena.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaEscena.class);
+			}
+		});
+		botnEscena.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
+		botnEscena.setBounds(21, 248, 177, 63);
+		botnEscena.setVisible(false); // Inicialmente oculto
+		add(botnEscena);
 		
 		botonRespuesta1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -203,7 +225,15 @@ public class PantallaEscena extends JPanel {
 	        } else {
 	            botonCita.setVisible(false);
 	        }
-
+	        if (nivel >= 3) {
+	            if (personaje.isPoliamoroso()) {
+	                // Personaje poliamoroso, mostrar botón para crear una nueva escena con otro personaje
+	                botnEscena.setVisible(true);
+	            } else {
+	                // Personaje no poliamoroso, mostrar botón para casarse y finalizar el juego
+	            	botonCasarse.setVisible(true);
+	            }
+	        }
 	        actualizarPregunta();
 	    }
 

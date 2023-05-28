@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 
+import clases.Jugador;
 import clases.Personaje;
 import clases.Pregunta;
 import clases.TemaDeConversacion;
@@ -21,6 +22,7 @@ public class Ventana extends JFrame {
     private Gusto gustoElegido;
     private PantallaEscena pantallaEscenaActual;
     private Personaje personaje;
+    private Jugador jugador;
 
 	public Ventana() {
 		this.setSize(600, 500);
@@ -61,6 +63,10 @@ public class Ventana extends JFrame {
 			
 			this.setContentPane(new PantallaCita(this, personaje));
 		}
+		if (clase.equals(PantallaCasarse.class)) {
+			this.setContentPane(new PantallaCasarse(this,jugador,personaje));
+		}
+		
 		this.getContentPane().setVisible(true);
 
 	}
