@@ -53,7 +53,7 @@ public class PantallaEscena extends JPanel {
 		labelPersonaje = new JLabel(personaje.getNombre());
 		labelPersonaje.setForeground(new Color(255, 255, 255));
 		labelPersonaje.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
-		labelPersonaje.setBounds(163, 32, 203, 26);
+		labelPersonaje.setBounds(219, 10, 203, 26);
 		add(labelPersonaje);
 
 		nivelAmorActual = personaje.getNivelAmor();
@@ -66,18 +66,18 @@ public class PantallaEscena extends JPanel {
 		labelEnunciado = new JLabel();
 		labelEnunciado.setForeground(new Color(255, 255, 255));
 		labelEnunciado.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		labelEnunciado.setBounds(21, 305, 533, 72);
+		labelEnunciado.setBounds(21, 323, 678, 85);
 		add(labelEnunciado);
 
 		botonRespuesta1 = new JButton();
 		botonRespuesta1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
 
-		botonRespuesta1.setBounds(337, 405, 85, 21);
+		botonRespuesta1.setBounds(389, 453, 226, 54);
 		add(botonRespuesta1);
 
 		botonRespuesta2 = new JButton();
 		botonRespuesta2.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		botonRespuesta2.setBounds(144, 405, 85, 21);
+		botonRespuesta2.setBounds(68, 453, 215, 54);
 		add(botonRespuesta2);
 
 		botonMasInfo = new JButton("Mas Info");
@@ -89,7 +89,7 @@ public class PantallaEscena extends JPanel {
 				mostrarModalInformacion();
 			}
 		});
-		botonMasInfo.setBounds(371, 68, 78, 21);
+		botonMasInfo.setBounds(476, 50, 110, 26);
 		add(botonMasInfo);
 
 		nivel = personaje.getNivel();
@@ -106,10 +106,11 @@ public class PantallaEscena extends JPanel {
 
 		fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
-		fondo.setBounds(0, 0, 602, 503);
+		fondo.setBounds(-14, 0, 740, 607);
 		add(fondo);
 		
 		botonCita = new JButton("TENER UNA CITA");
+		botonCita.setBackground(new Color(0, 255, 64));
 		botonCita.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -117,8 +118,8 @@ public class PantallaEscena extends JPanel {
 			}
 		});
 		botonCita.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
-		botonCita.setForeground(new Color(255, 255, 255));
-		botonCita.setBounds(422, 207, 132, 88);
+		botonCita.setForeground(new Color(0, 0, 0));
+		botonCita.setBounds(422, 207, 178, 63);
 		botonCita.setVisible(false); // Inicialmente oculto
 		add(botonCita);
 		
@@ -163,38 +164,45 @@ public class PantallaEscena extends JPanel {
 		labelNivelAmor.setText("Nivel de Amor: " + nivelAmorActual);
 		labelNivel.setText("Nivel: " + nivel);
 		repaint();
-		// Verificar si el nivel es igual a 3 y mostrar/ocultar el botón de la cita
-	    if (nivel == 3) {
-	        botonCita.setVisible(true);
-	    } else {
-	        botonCita.setVisible(false);
-	    }
 	}
+	
 	public void aumentarNivelAmor(int nivelAmor) {
-	    personaje.setNivelAmor(nivelAmor);
+	    nivelAmorActual = nivelAmor;
 	    actualizarNivelAmor();
 	}
 
 
-	private void verificarRespuesta(String respuestaSeleccionada) {
-		// Verificar respuesta
-		String respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
+	  private void verificarRespuesta(String respuestaSeleccionada) {
+	        // Verificar respuesta
+	        String respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
 
-		if (respuestaSeleccionada.equals(respuestaCorrecta)) {
-			JOptionPane.showMessageDialog(this, "¡Respuesta correcta!");
-			personaje.aumentarAmor();
-		} else {
-			JOptionPane.showMessageDialog(this, "Respuesta incorrecta...");
-			personaje.disminuirAmor();
-		}
-		nivelAmorActual = personaje.getNivelAmor();
-		actualizarNivelAmor();
-		if (nivelAmorActual >= 100) {
-			personaje.aumentarNivel();
-		}
+	        if (respuestaSeleccionada.equals(respuestaCorrecta)) {
+	            JOptionPane.showMessageDialog(this, "¡Respuesta correcta!");
+	            personaje.aumentarAmor();
+	        } else {
+	            JOptionPane.showMessageDialog(this, "Respuesta incorrecta...");
+	            personaje.disminuirAmor();
+	        }
+	        nivelAmorActual = personaje.getNivelAmor();
+	        actualizarNivelAmor();
 
-		actualizarPregunta();
-	}
+	        if (nivelAmorActual >= 100) {
+	            personaje.aumentarNivel();
+	            nivel = personaje.getNivel();
+	            nivelAmorActual = 50;
+	            personaje.setNivelAmor(nivelAmorActual);
+	            actualizarNivelAmor();
+	        }
+
+	        if (nivel >= 3) {
+	            botonCita.setVisible(true);
+	        } else {
+	            botonCita.setVisible(false);
+	        }
+
+	        actualizarPregunta();
+	    }
+
 
 	private void mostrarModalInformacion() {
 		final JDialog dialogo = new JDialog(ventana, "Información del Personaje", true);
