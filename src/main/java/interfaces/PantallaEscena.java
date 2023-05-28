@@ -106,11 +106,11 @@ public class PantallaEscena extends JPanel {
 
 		fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
-		fondo.setBounds(-14, 0, 740, 607);
+		fondo.setBounds(-31, -40, 740, 607);
 		add(fondo);
 		
 		botonCita = new JButton("TENER UNA CITA");
-		botonCita.setBackground(new Color(0, 255, 64));
+		botonCita.setBackground(new Color(0, 159, 236));
 		botonCita.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -166,8 +166,8 @@ public class PantallaEscena extends JPanel {
 		repaint();
 	}
 	
-	public void aumentarNivelAmor(int nivelAmor) {
-	    nivelAmorActual = nivelAmor;
+	public void aumentarNivelAmor(int puntos ) {
+		 nivelAmorActual += puntos;
 	    actualizarNivelAmor();
 	}
 
@@ -194,7 +194,7 @@ public class PantallaEscena extends JPanel {
 	            actualizarNivelAmor();
 	        }
 
-	        if (nivel >= 3) {
+	        if (nivel >= 2) {
 	            botonCita.setVisible(true);
 	        } else {
 	            botonCita.setVisible(false);

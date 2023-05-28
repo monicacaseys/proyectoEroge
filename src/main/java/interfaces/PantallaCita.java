@@ -16,7 +16,7 @@ public class PantallaCita extends JPanel{
 	public PantallaCita(Ventana v,Personaje p) {
 		this.ventana=v;
 		this.personaje=p;
-		Gusto gustoElegido = ventana.getGustoElegido();
+		final Gusto gustoElegido = ventana.getGustoElegido();
 		setLayout(null);
 		
 		JLabel labelTexto = new JLabel("Porfin podemos relajarnos de tanta pregunta y tener un momento mas intimo. Me gustAAs!!");
@@ -31,23 +31,21 @@ public class PantallaCita extends JPanel{
 		botonContinuar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//volver a la Escena anterior con los datos guardados.
-				 PantallaEscena pantallaEscena = ventana.getPantallaEscenaActual();
-			        if (pantallaEscena != null) {
-			            int nivelAmorActual = personaje.getNivelAmor();
-			            pantallaEscena.aumentarNivelAmor(nivelAmorActual);
-			            ventana.setContentPane(pantallaEscena);
-			            ventana.getContentPane().setVisible(true);
-			        }
+				  PantallaEscena pantallaEscena = ventana.getPantallaEscenaActual();
+	                if (pantallaEscena != null) {
+	                    if (!personaje.getGustos().contains(gustoElegido)) {
+	                        // El gusto elegido no coincide con los gustos del personaje, aumentar en 20 puntos
+	                        pantallaEscena.aumentarNivelAmor(20);
+	                    } else {
+	                        // El gusto elegido coincide con los gustos del personaje, aumentar en 40 puntos
+	                        pantallaEscena.aumentarNivelAmor(40);
+	                    }
+	                    ventana.setContentPane(pantallaEscena);
+	                    ventana.getContentPane().setVisible(true);
+	                }
 			}
 		});
 		botonContinuar.setBounds(410, 415, 128, 50);
 		add(botonContinuar);
 	}
-	
-
-
-
-
-	
 }
