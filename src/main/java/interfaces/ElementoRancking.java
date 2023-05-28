@@ -10,11 +10,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import clases.Jugador;
+import clases.Personaje;
 
 public class ElementoRancking extends JPanel {
 	Ventana ventana;
 	Jugador jugador;
-	public ElementoRancking(Ventana v, Jugador j) {
+	Personaje personaje;
+	public ElementoRancking(Ventana v, Jugador j,Personaje p) {
+		this.jugador=j;
+		this.personaje=p;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 308, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -38,7 +42,7 @@ public class ElementoRancking extends JPanel {
 		gbc_btnNewButton.gridy = 0;
 		add(btnNewButton, gbc_btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel(""+jugador.getEdad());
+		JLabel lblNewLabel_1 = new JLabel(""+personaje.getNombre());
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 1;
@@ -47,7 +51,7 @@ public class ElementoRancking extends JPanel {
 		
 		
 		ventana=v;
-		jugador=j;
+		
 	}
 	}
 	

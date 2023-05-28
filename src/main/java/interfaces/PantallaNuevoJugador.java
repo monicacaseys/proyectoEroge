@@ -142,7 +142,7 @@ public class PantallaNuevoJugador extends JPanel {
 		            HashSet<Gusto> gustos = obtenerGustosSeleccionados(); // Método para obtener los gustos seleccionados
 
 		            Jugador nuevoJugador = Jugador.crearNuevoJugador(nombre, edad, personalidad, gustos);
-		            // ... hacer algo con el nuevo jugador ...
+		            ventana.setJugador(nuevoJugador);
 
 		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Jugador creado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 		        ventana.cambiarAPantalla(PantallaHistoria.class);

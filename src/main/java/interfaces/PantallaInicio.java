@@ -65,6 +65,12 @@ public class PantallaInicio extends JPanel {
 	        add(botonContinuar, gbc_botonContinuar);
 
 	        JButton botonRanking = new JButton("VER RANKING");
+	        botonRanking.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		ventana.cambiarAPantalla(PantallaRanking.class);
+	        	}
+	        });
 	        botonRanking.setBackground(new Color(255, 96, 255));
 	        botonRanking.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 	        GridBagConstraints gbc_botonRanking = new GridBagConstraints();

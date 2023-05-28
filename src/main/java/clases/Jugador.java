@@ -27,36 +27,36 @@ public class Jugador extends Persona {
 	}
 
 	
-	
-/*CONTRCUTRO PAR COMPROBAR SI HAY ESE NOMBRE Y CONTINUAR
-	public Jugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) throws JugadorNoExisteException {
-	    super(nombre, edad, personalidad, gustos);
 
-	    LinkedHashSet<String> columnasSacar = new LinkedHashSet<>();
-	    columnasSacar.add("nombre");
-
-	    HashMap<String, Object> restricciones = new HashMap<>();
-	    restricciones.put("nombre", nombre);
-
-	    ArrayList<Object> resultado = null;
-	    try {
-	        resultado = DAO.consultar("jugador", columnasSacar, restricciones);
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-	    if (resultado.isEmpty()) {
-	        throw new JugadorNoExisteException("El jugador no existe");
-	    }
-	}
-*/
 
 	 public static Jugador crearNuevoJugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) throws SQLException {
 	        return new Jugador(nombre, edad, personalidad, gustos);
 	    }
 
 	
-	
+		
+	 /*CONTRCUTRO PAR COMPROBAR SI HAY ESE NOMBRE Y CONTINUAR
+	 	public Jugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) throws JugadorNoExisteException {
+	 	    super(nombre, edad, personalidad, gustos);
+
+	 	    LinkedHashSet<String> columnasSacar = new LinkedHashSet<>();
+	 	    columnasSacar.add("nombre");
+
+	 	    HashMap<String, Object> restricciones = new HashMap<>();
+	 	    restricciones.put("nombre", nombre);
+
+	 	    ArrayList<Object> resultado = null;
+	 	    try {
+	 	        resultado = DAO.consultar("jugador", columnasSacar, restricciones);
+	 	    } catch (SQLException e) {
+	 	        e.printStackTrace();
+	 	    }
+
+	 	    if (resultado.isEmpty()) {
+	 	        throw new JugadorNoExisteException("El jugador no existe");
+	 	    }
+	 	}
+	 */
 	
 	
 

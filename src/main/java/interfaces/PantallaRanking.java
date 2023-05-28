@@ -10,11 +10,11 @@ import javax.swing.JScrollPane;
 
 public class PantallaRanking extends JPanel{
 	Ventana ventana;
-	public PantallaRanking() {
-		/*this.ventana=v;//y esto tambien imprecindible
+	public PantallaRanking(Ventana v) {
+		this.ventana=v;//y esto tambien imprecindible
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel labelBienvenido = new JLabel("Bienvenid@, "+ventana.clienteLogado.getNombre());
+		JLabel labelBienvenido = new JLabel("Bienvenid@, "+ventana.jugador.getNombre());
 		add(labelBienvenido, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
@@ -34,11 +34,11 @@ public class PantallaRanking extends JPanel{
 		contenedorElementos.setLayout(new BoxLayout(contenedorElementos, BoxLayout.Y_AXIS));
 		
 		for(byte i=0;i<100;i++) {
-			contenedorElementos.add(new EleemntoListaUsuario(ventana,ventana.clienteLogado)); //mirara clase 16(05 para ampliar esto ya que es la forma corta
+			contenedorElementos.add(new ElementoRancking(ventana,ventana.jugador,ventana.personaje)); //mirara clase 16(05 para ampliar esto ya que es la forma corta
 		}
 	}
 	
-	*/
+	
 	
 	}
-}
+

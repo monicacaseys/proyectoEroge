@@ -8,10 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Map.Entry;
+
+import clases.Jugador;
+import clases.Personaje;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -213,4 +219,33 @@ public class PersonajeDAO {
 	        }
 	        return false;
 }
+	    public void guardarDatosJugadorYPersonajes(Jugador jugador, HashMap<Personaje, Integer> mapaPersonajes) {
+	        try {
+	            PersonajeDAO personajeDAO = new PersonajeDAO();
+	            
+	            // Obtener el id del jugador existente
+	            HashMap<String, Object> restriccionesJugador = new HashMap<>();
+	            restriccionesJugador.put("nombre", jugador.getNombre());
+	            ArrayList<Object> jugadorExistente = personajeDAO.consultar("jugador", new LinkedHashSet<>(Arrays.asList("id")), restriccionesJugador);
+	            int idJugador = (int) jugadorExistente.get(0);
+	            
+	            // Guardar los personajes asociados al jugador en la tabla 'jugador-personaje'
+	            for (Map.Entry<Personaje, Integer> entry : mapaPersonajes.entrySet()) {
+	                Personaje personaje = entry.getKey();
+	                int idPersonaje = entry.getKey().getId(); // Obtener el ID del personaje
+	                
+	                HashMap<String, Object> datosJugadorPersonaje = new HashMap<>();
+	                datosJugadorPersonaje.put("idJugador", idJugador);
+	                datosJugadorPersonaje.put("idPersonaje", idPersonaje);
+	              //  datosJugadorPersonaje.put("nivel", personaje.getNivel());
+	                personajeDAO.insertar("jugador_personaje", datosJugadorPersonaje);
+	            }
+	            
+	            System.out.println("Datos guardados en la base de datos.");
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            System.out.println("Error al guardar los datos en la base de datos.");
+	        }
+	    }
+
 }

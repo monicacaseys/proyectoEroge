@@ -18,6 +18,7 @@ import java.util.Random;
 
 public class Personaje extends Persona {
 
+	private int id;
 	private int nivelAmor;
 	private byte nivel;
 	private TipoPersonaje tipoPersonaje;
@@ -28,7 +29,7 @@ public class Personaje extends Persona {
 	private int indiceTemaActual;
 	private List<Pregunta> preguntasNoRespondidas = new ArrayList<>();
 
-	public Personaje(String nombre, int edad, String personalidad, HashSet<Gusto> gustos, TipoPersonaje tipoPersonaje,
+	public Personaje(int id,String nombre, int edad, String personalidad, HashSet<Gusto> gustos, TipoPersonaje tipoPersonaje,
 			boolean poliamoroso, int nivelAmor, byte nivel) throws SQLException {
 		super(nombre, edad, personalidad, gustos);
 		this.nivelAmor = nivelAmor;
@@ -40,8 +41,17 @@ public class Personaje extends Persona {
 	    Collections.shuffle(preguntasNoRespondidas);
 		this.indiceTemaActual = 0;
 		this.poliamoroso = poliamoroso;
+		this.id=id;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public static ArrayList<Personaje> getTodos() {
 	    ArrayList<Personaje> personajes = new ArrayList<>();
 
@@ -67,6 +77,7 @@ public class Personaje extends Persona {
 
 	        // Recorrer los resultados y crear instancias de Personaje
 	        for (int i = 0; i < resultados.size(); i += 9) {
+	        	int idPersonaje = (int) resultados.get(i);
 	            String nombre = (String) resultados.get(i + 1);
 	            int edad = (int) resultados.get(i + 2);
 	            String personalidad = (String) resultados.get(i + 3);
@@ -87,8 +98,9 @@ public class Personaje extends Persona {
 	            }
 
 	            // Crear instancia de Personaje con los datos obtenidos
-	            Personaje personaje = new Personaje(nombre, edad, personalidad, gustos, tipoPersonaje, poliamoroso, nivelAmor, nivel);
+	            Personaje personaje = new Personaje(idPersonaje,nombre, edad, personalidad, gustos, tipoPersonaje, poliamoroso, nivelAmor, nivel);
 	          
+	            
 	            // Agregar el personaje a la lista
 	            personajes.add(personaje);
 	            

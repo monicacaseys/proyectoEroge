@@ -105,12 +105,12 @@ public class PantallaEscena extends JPanel {
 		JLabel labelGift = new JLabel(new ImageIcon(getClass().getResource(rutaGif)));
 		labelGift.setBounds(110, 80, 69, 43);
 		add(labelGift);
-/*
+
 		fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
 		fondo.setBounds(-31, -43, 740, 607);
 		add(fondo);
-		*/
+		
 		botonCita = new JButton("TENER UNA CITA");
 		botonCita.setBackground(new Color(0, 159, 236));
 		botonCita.addMouseListener(new MouseAdapter() {
@@ -129,7 +129,7 @@ public class PantallaEscena extends JPanel {
 		botonCasarse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			//	ventana.cambiarAPantalla(PantallaCasarse.class);
+			ventana.cambiarAPantalla(PantallaCasarse.class);
 			}
 		});
 		botonCasarse.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));

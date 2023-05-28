@@ -21,14 +21,15 @@ import utils.PersonajeDAO;
 public class Ventana extends JFrame {
     private Gusto gustoElegido;
     private PantallaEscena pantallaEscenaActual;
-    private Personaje personaje;
-    private Jugador jugador;
+    protected Personaje personaje;
+    protected Jugador jugador;
 
 	public Ventana() {
 		this.setSize(600, 500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaInicio(this));
+		this.jugador = null; // Inicialmente el jugador es nulo
 		this.setVisible(true);
 
 	}
@@ -56,6 +57,7 @@ public class Ventana extends JFrame {
 		    pantallaEscenaActual = new PantallaEscena(this, personaje);
 		    this.setContentPane(pantallaEscenaActual);
 		}
+		
 		if (clase.equals(PantallaLugar.class)) {
 			this.setContentPane(new PantallaLugar(this));
 		}
@@ -65,6 +67,9 @@ public class Ventana extends JFrame {
 		}
 		if (clase.equals(PantallaCasarse.class)) {
 			this.setContentPane(new PantallaCasarse(this,jugador,personaje));
+		}
+		if (clase.equals(PantallaRanking.class)) {
+			this.setContentPane(new PantallaRanking(this));
 		}
 		
 		this.getContentPane().setVisible(true);
@@ -84,6 +89,9 @@ public class Ventana extends JFrame {
 	    this.pantallaEscenaActual = pantallaEscena;
 	}
 
+	  public void setJugador(Jugador jugador) {
+	        this.jugador = jugador;
+	    }
 
 	
 	
