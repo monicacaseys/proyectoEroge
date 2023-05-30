@@ -24,9 +24,9 @@ import java.io.FileReader;
 import java.io.IOException;
 public class PersonajeDAO {
 
-	private static Connection conexion;
+	public static Connection conexion;
 	// 127.0.0.1 3306 bicicletasdaw root admin
-		private static Statement conectar() {
+		public static Statement conectar() {
 		//intentar conectar general
 		try {
 			BufferedReader lector=new BufferedReader(new FileReader("bdconfig.ini"));
@@ -53,7 +53,7 @@ public class PersonajeDAO {
 			return null;
 		}
 	}
-		private static void desconectar(Statement s) {
+		public static void desconectar(Statement s) {
 			try { // el try catch lo pone como sugerencia al escribir close
 				s.close();
 				conexion.close();
@@ -61,6 +61,51 @@ public class PersonajeDAO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+		}
+		public static ArrayList<Object> consultar(String tabla, LinkedHashSet<String> columnasSelect,
+				HashMap<String, Object> restricciones) throws SQLException { 
+
+			Statement smt = conectar();
+			String query = "select ";
+			Iterator ith = columnasSelect.iterator();
+			while (ith.hasNext()) {
+				query += (String) ith.next() + ",";
+			}
+			query = query.substring(0, query.length() - 1) + " from " + tabla + (restricciones.size() > 0 ? " where " : "");
+			Iterator itm = restricciones.entrySet().iterator();
+			while (itm.hasNext()) {
+				Entry actual = (Entry) itm.next();
+				if(actual.getValue().getClass()!=String.class&&actual.getValue().getClass()!=Character.class) {
+					query += (String) actual.getKey() + "=" + (String) actual.getValue() + " and ";
+				}else {
+					query += (String) actual.getKey() + "='" + (String) actual.getValue() + "' and ";	
+				}
+				
+			}
+			if(restricciones.size()>0) { //importante esta condicion conla resticcion
+				query=query.substring(0,query.length()-5);
+			}
+			if(Config.verboseMode) {
+			System.out.println(query);
+			}
+
+			ResultSet cursor = smt.executeQuery(query); 
+			ArrayList<Object> fila = new ArrayList<Object>();
+			
+			while (cursor.next()) { 
+	           Iterator hsCols=columnasSelect.iterator();
+	           while(hsCols.hasNext()) {
+	        	   String nombreCol=(String)hsCols.next();
+	        	   try {
+	        		   fila.add(cursor.getInt(cursor.findColumn(nombreCol))); // Si no es un entero da error por lo que lo capturo 
+	        	   }catch(NumberFormatException | SQLException e) {
+	        		   fila.add(cursor.getString(cursor.findColumn(nombreCol))); // por si es un string lo mete ahi
+	        	   }
+	           }
+	           }
+			desconectar(smt);
+			return fila;
 
 		}
 
@@ -124,51 +169,35 @@ public class PersonajeDAO {
 			return ret; // me da el numero de evces que se borro
 		}
 
-		public static ArrayList<Object> consultar(String tabla, LinkedHashSet<String> columnasSelect,
-				HashMap<String, Object> restricciones) throws SQLException { 
-
-			Statement smt = conectar();
-			String query = "select ";
-			Iterator ith = columnasSelect.iterator();
-			while (ith.hasNext()) {
-				query += (String) ith.next() + ",";
-			}
-			query = query.substring(0, query.length() - 1) + " from " + tabla + (restricciones.size() > 0 ? " where " : "");
-			Iterator itm = restricciones.entrySet().iterator();
-			while (itm.hasNext()) {
-				Entry actual = (Entry) itm.next();
-				if(actual.getValue().getClass()!=String.class&&actual.getValue().getClass()!=Character.class) {
-					query += (String) actual.getKey() + "=" + (String) actual.getValue() + " and ";
-				}else {
-					query += (String) actual.getKey() + "='" + (String) actual.getValue() + "' and ";	
-				}
-				
-			}
-			if(restricciones.size()>0) { //importante esta condicion conla resticcion
-				query=query.substring(0,query.length()-5);
-			}
-			if(Config.verboseMode) {
-			System.out.println(query);
-			}
-
-			ResultSet cursor = smt.executeQuery(query); 
-			ArrayList<Object> fila = new ArrayList<Object>();
-			
-			while (cursor.next()) { 
-	           Iterator hsCols=columnasSelect.iterator();
-	           while(hsCols.hasNext()) {
-	        	   String nombreCol=(String)hsCols.next();
-	        	   try {
-	        		   fila.add(cursor.getInt(cursor.findColumn(nombreCol))); // Si no es un entero da error por lo que lo capturo 
-	        	   }catch(NumberFormatException | SQLException e) {
-	        		   fila.add(cursor.getString(cursor.findColumn(nombreCol))); // por si es un string lo mete ahi
-	        	   }
-	           }
-	           }
-			desconectar(smt);
-			return fila;
-
-		}
+		
+	    public void guardarDatosJugadorYPersonajes(Jugador jugador, HashMap<Personaje, Integer> mapaPersonajes) {
+	        try {
+	            PersonajeDAO personajeDAO = new PersonajeDAO();
+	            
+	            // Obtener el id del jugador existente
+	            HashMap<String, Object> restriccionesJugador = new HashMap<>();
+	            restriccionesJugador.put("nombre", jugador.getNombre());
+	            ArrayList<Object> jugadorExistente = personajeDAO.consultar("jugador", new LinkedHashSet<>(Arrays.asList("id")), restriccionesJugador);
+	            int idJugador = (int) jugadorExistente.get(0);
+	            
+	            // Guardar los personajes asociados al jugador en la tabla 'jugador-personaje'
+	            for (Map.Entry<Personaje, Integer> entry : mapaPersonajes.entrySet()) {
+	                Personaje personaje = entry.getKey();
+	                int idPersonaje = entry.getKey().getId(); // Obtener el ID del personaje
+	                
+	                HashMap<String, Object> datosJugadorPersonaje = new HashMap<>();
+	                datosJugadorPersonaje.put("idJugador", idJugador);
+	                datosJugadorPersonaje.put("idPersonaje", idPersonaje);
+	              //  datosJugadorPersonaje.put("nivel", personaje.getNivel());
+	                personajeDAO.insertar("jugador_personaje", datosJugadorPersonaje);
+	            }
+	            
+	            System.out.println("Datos guardados en la base de datos.");
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            System.out.println("Error al guardar los datos en la base de datos.");
+	        }
+	    }
 		
 		public static int actualizar(String tabla,HashMap<String, Object> datosAModificar, HashMap<String,Object> restricciones) throws SQLException {
 			String query="update "+tabla+" set ";
@@ -205,47 +234,6 @@ public class PersonajeDAO {
 				
 		}
 
-	    public static boolean verificarExistenciaPersonaje(String nombre) throws SQLException {
-	        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eroge", "root", "admin")) {
-	            String query = "SELECT COUNT(*) FROM personaje WHERE nombre = ?";
-	            try (PreparedStatement statement = connection.prepareStatement(query)) {
-	                statement.setString(1, nombre);
-	                ResultSet resultSet = statement.executeQuery();
-	                if (resultSet.next()) {
-	                    int count = resultSet.getInt(1);
-	                    return count > 0;
-	                }
-	            }
-	        }
-	        return false;
-}
-	    public void guardarDatosJugadorYPersonajes(Jugador jugador, HashMap<Personaje, Integer> mapaPersonajes) {
-	        try {
-	            PersonajeDAO personajeDAO = new PersonajeDAO();
-	            
-	            // Obtener el id del jugador existente
-	            HashMap<String, Object> restriccionesJugador = new HashMap<>();
-	            restriccionesJugador.put("nombre", jugador.getNombre());
-	            ArrayList<Object> jugadorExistente = personajeDAO.consultar("jugador", new LinkedHashSet<>(Arrays.asList("id")), restriccionesJugador);
-	            int idJugador = (int) jugadorExistente.get(0);
-	            
-	            // Guardar los personajes asociados al jugador en la tabla 'jugador-personaje'
-	            for (Map.Entry<Personaje, Integer> entry : mapaPersonajes.entrySet()) {
-	                Personaje personaje = entry.getKey();
-	                int idPersonaje = entry.getKey().getId(); // Obtener el ID del personaje
-	                
-	                HashMap<String, Object> datosJugadorPersonaje = new HashMap<>();
-	                datosJugadorPersonaje.put("idJugador", idJugador);
-	                datosJugadorPersonaje.put("idPersonaje", idPersonaje);
-	              //  datosJugadorPersonaje.put("nivel", personaje.getNivel());
-	                personajeDAO.insertar("jugador_personaje", datosJugadorPersonaje);
-	            }
-	            
-	            System.out.println("Datos guardados en la base de datos.");
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            System.out.println("Error al guardar los datos en la base de datos.");
-	        }
-	    }
+
 
 }

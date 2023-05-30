@@ -10,6 +10,10 @@ public class Persona {
 	    private String personalidad;
 	    private HashSet<Gusto> gustos;
 	    
+		public Persona(String nombre) {
+			this.nombre = nombre;
+			
+		}
 		public Persona(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) {
 			super();
 			this.nombre = nombre;

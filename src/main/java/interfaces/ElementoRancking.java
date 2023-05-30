@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,9 +17,62 @@ public class ElementoRancking extends JPanel {
 	Ventana ventana;
 	Jugador jugador;
 	Personaje personaje;
+
+	public ElementoRancking(Ventana v2, String nombreJugador, String nombrePersonaje) {
+	    System.out.println("Nombre del jugador: " + nombreJugador);
+        System.out.println("Nombre del personaje: " + nombrePersonaje);
+			GridBagLayout gridBagLayout = new GridBagLayout();
+			gridBagLayout.columnWidths = new int[]{0, 0, 0, 308, 0};
+			gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
+			gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+			gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			setLayout(gridBagLayout);
+			
+			 // Crear instancias de Jugador y Personaje utilizando los nombres proporcionados
+	        try {
+				jugador = new Jugador(nombreJugador);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        try {
+				personaje = new Personaje(nombrePersonaje);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    
+
+	        
+			JLabel lblNewLabel = new JLabel(""+nombreJugador);
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel.gridx = 1;
+			gbc_lblNewLabel.gridy = 0;
+			add(lblNewLabel, gbc_lblNewLabel);
+			
+			JButton btnNewButton = new JButton("New button");
+			GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+			gbc_btnNewButton.gridheight = 3;
+			gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
+			gbc_btnNewButton.gridx = 3;
+			gbc_btnNewButton.gridy = 0;
+			add(btnNewButton, gbc_btnNewButton);
+			
+			JLabel lblNewLabel_1 = new JLabel(""+nombrePersonaje);
+			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel_1.gridx = 1;
+			gbc_lblNewLabel_1.gridy = 1;
+			add(lblNewLabel_1, gbc_lblNewLabel_1);
+			
+			System.out.println( "x"+nombrePersonaje);
+			
+			ventana=v2;
+			
+	}
 	public ElementoRancking(Ventana v, Jugador j,Personaje p) {
-		this.jugador=j;
-		this.personaje=p;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 308, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -51,7 +105,8 @@ public class ElementoRancking extends JPanel {
 		
 		
 		ventana=v;
-		
+		jugador=j;
+		personaje=p;
 	}
 	}
 	

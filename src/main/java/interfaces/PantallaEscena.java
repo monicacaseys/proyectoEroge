@@ -2,10 +2,12 @@ package interfaces;
 
 import javax.swing.JPanel;
 
+
 import clases.Personaje;
 import clases.Pregunta;
 import clases.TemaDeConversacion;
 import enums.Gusto;
+import utils.PersonajeDAO;
 
 import java.awt.GridBagLayout;
 
@@ -21,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -45,6 +48,8 @@ public class PantallaEscena extends JPanel {
 	private JButton botonCita;
 	private JButton botnEscena;
 	private JButton botonCasarse;
+	private int nivelAmorGuardado = 0;
+
 
 	public PantallaEscena(Ventana v, Personaje personaje) {
 		this.ventana = v;
@@ -66,20 +71,20 @@ public class PantallaEscena extends JPanel {
 		add(labelNivelAmor);
 
 		labelEnunciado = new JLabel();
-		labelEnunciado.setForeground(new Color(255, 255, 255));
+		labelEnunciado.setForeground(new Color(0, 255, 64));
 		labelEnunciado.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		labelEnunciado.setBounds(21, 323, 678, 85);
+		labelEnunciado.setBounds(32, 358, 678, 85);
 		add(labelEnunciado);
 
 		botonRespuesta1 = new JButton();
 		botonRespuesta1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
 
-		botonRespuesta1.setBounds(389, 453, 226, 54);
+		botonRespuesta1.setBounds(392, 526, 226, 54);
 		add(botonRespuesta1);
 
 		botonRespuesta2 = new JButton();
 		botonRespuesta2.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		botonRespuesta2.setBounds(68, 453, 215, 54);
+		botonRespuesta2.setBounds(67, 526, 215, 54);
 		add(botonRespuesta2);
 
 		botonMasInfo = new JButton("Mas Info");
@@ -106,10 +111,7 @@ public class PantallaEscena extends JPanel {
 		labelGift.setBounds(110, 80, 69, 43);
 		add(labelGift);
 
-		fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ran.png")));
-		fondo.setBounds(-31, -43, 740, 607);
-		add(fondo);
+		
 		
 		botonCita = new JButton("TENER UNA CITA");
 		botonCita.setBackground(new Color(0, 159, 236));
@@ -141,6 +143,7 @@ public class PantallaEscena extends JPanel {
 		botnEscena.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				//posible sitio para guardar datos en BBDD
 				ventana.cambiarAPantalla(PantallaEscena.class);
 			}
 		});
@@ -162,6 +165,11 @@ public class PantallaEscena extends JPanel {
 			}
 		});
 
+		fondo = new JLabel("");
+		fondo.setIcon(new ImageIcon(PantallaEscena.class.getResource("/imagenes/ff.jpg")));
+		fondo.setBounds(-31, -43, 826, 843);
+		add(fondo);
+		
 		actualizarNivelAmor();
 		actualizarPregunta();
 		
@@ -182,7 +190,14 @@ public class PantallaEscena extends JPanel {
 		} else {
 			// No quedan más preguntas, juego terminado
 			JOptionPane.showMessageDialog(this, "¡Fin del juego!");
-			// Realizar acciones de finalización del juego
+			personaje.morir(personaje);
+			ventana.cambiarAPantalla(PantallaEscena.class);
+			/* Realizar acciones de finalización del juego
+			PersonajeDAO personajeDAO = new PersonajeDAO();
+			HashMap<Personaje, Integer> mapaPersonajes = new HashMap<>();
+			mapaPersonajes.put(personaje, 1); // Agregar el personaje con valor 1 (representando la cantidad)
+			personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);*/
+			
 		}
 	}
 
@@ -193,12 +208,26 @@ public class PantallaEscena extends JPanel {
 	}
 	
 	public void aumentarNivelAmor(int puntos ) {
+		nivelAmorGuardado = nivelAmorActual;
 		 nivelAmorActual += puntos;
 	    actualizarNivelAmor();
 	}
 
 
-	  private void verificarRespuesta(String respuestaSeleccionada) {
+	  public int getNivelAmorGuardado() {
+		return nivelAmorGuardado;
+	}
+
+	public void setNivelAmorGuardado(int nivelAmorGuardado) {
+		this.nivelAmorGuardado = nivelAmorGuardado;
+	}
+	public void setNivelAmorActual(int nivelAmor) {
+	    this.nivelAmorActual = nivelAmor;
+	    actualizarNivelAmor();
+	}
+
+
+	private void verificarRespuesta(String respuestaSeleccionada) {
 	        // Verificar respuesta
 	        String respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
 

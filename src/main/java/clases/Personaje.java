@@ -28,7 +28,12 @@ public class Personaje extends Persona {
 	private BufferedImage imagen;
 	private int indiceTemaActual;
 	private List<Pregunta> preguntasNoRespondidas = new ArrayList<>();
+	
 
+	public Personaje(String nombre) throws SQLException {
+		super(nombre);
+	
+	}
 	public Personaje(int id,String nombre, int edad, String personalidad, HashSet<Gusto> gustos, TipoPersonaje tipoPersonaje,
 			boolean poliamoroso, int nivelAmor, byte nivel) throws SQLException {
 		super(nombre, edad, personalidad, gustos);
@@ -206,12 +211,11 @@ public class Personaje extends Persona {
 
 	    Pregunta pregunta1 = new Pregunta("¿Cuál es mi color favorito?",
 	            new ArrayList<>(Arrays.asList("Rojo", "Azul")), "Azul");
-
 	    Pregunta pregunta2 = new Pregunta("¿Cuál es mi comida favorita?",
 	            new ArrayList<>(Arrays.asList("Pizza", "Sushi")), "Pizza");
 	    Pregunta pregunta3 = new Pregunta("¿Eres misogin@?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "No");
-	    Pregunta pregunta4 = new Pregunta("¿Cuáles son las principales barreras que las mujeres enfrentan en su lucha por la igualdad de género en la sociedad actual?",
+	    Pregunta pregunta4 = new Pregunta("¿Cuál es una barrera para las mujeres en su lucha por la igualdad de género?",
 	            new ArrayList<>(Arrays.asList("Su objetivización", "Estar locas ")), "Su objetivización");
 	    Pregunta pregunta5 = new Pregunta("Cómo podemos fomentar una educación más equitativa e inclusiva?",
 	            new ArrayList<>(Arrays.asList("Porno sin filtros", "Porno filtrado")), "Porno filtrado");
@@ -219,13 +223,13 @@ public class Personaje extends Persona {
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
 	    Pregunta pregunta7 = new Pregunta("¿Cuál es el papel de la educación en la desmantelación del patriarcado y el heterosexismo?",
 	            new ArrayList<>(Arrays.asList("No puede hacer nada", "Papel de actor importante")), "Papel de actor importante");
-	    Pregunta pregunta8 = new Pregunta("¿Cómo podemos abordar de manera efectiva la violencia de género y garantizar la seguridad y protección de las mujeres, trans y homosexuales?",
-	            new ArrayList<>(Arrays.asList("Leyes y consienciación", "Mantenerse al margen")), "Leyes y consienciación");
+	    Pregunta pregunta8 = new Pregunta("¿Cómo podemos abordar la violencia de género y garantizar la seguridad de las mujeres?",
+	            new ArrayList<>(Arrays.asList("Leyes y conscienciación", "Mantenerse al margen")), "Leyes y conscienciación");
 	    Pregunta pregunta9 = new Pregunta("¿Una representación equitativa y diversa en los medios de comunicación?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
 	    Pregunta pregunta10 = new Pregunta("¿Aliarse y apoyar a las personas que luchan contra el patriarcado y el heterosexismo?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionales y las expectativas impuestas por el patriarcado y el heterosexismo?",
+	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionale impuestas por el patriarcado y el heterosexismo?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
 	    
 	    tema.agregarPregunta(pregunta1);

@@ -37,14 +37,14 @@ public class PantallaLugar extends JPanel {
 			}
 		});
 		btnPlaya.setBackground(new Color(255, 128, 192));
-		btnPlaya.setBounds(180, 120, 231, 39);
+		btnPlaya.setBounds(264, 130, 231, 39);
 		btnPlaya.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 	
 		setLayout(null);
 		
 		JLabel titulo = new JLabel("ELIGE LUGAR PARA EL ENCUENTRO");
 		titulo.setForeground(new Color(64, 0, 128));
-		titulo.setBounds(31, 49, 559, 61);
+		titulo.setBounds(98, 20, 559, 61);
 		titulo.setBackground(new Color(128, 255, 0));
 		titulo.setFont(new Font("Whimsy TT", Font.BOLD | Font.ITALIC, 34));
 		add(titulo);
@@ -62,7 +62,7 @@ public class PantallaLugar extends JPanel {
 			}
 		});
 		btnCine.setBackground(new Color(255, 128, 192));
-		btnCine.setBounds(180, 169, 231, 39);
+		btnCine.setBounds(264, 196, 231, 39);
 		btnCine.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 		add(btnCine);
 		
@@ -78,7 +78,7 @@ public class PantallaLugar extends JPanel {
 			}
 		});
 		btnPetanca.setBackground(new Color(255, 128, 192));
-		btnPetanca.setBounds(180, 218, 231, 39);
+		btnPetanca.setBounds(264, 262, 231, 39);
 		btnPetanca.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 		add(btnPetanca);
 		
@@ -94,7 +94,7 @@ public class PantallaLugar extends JPanel {
 			}
 		});
 		btnBeatbox.setBackground(new Color(255, 128, 192));
-		btnBeatbox.setBounds(180, 267, 231, 38);
+		btnBeatbox.setBounds(264, 327, 231, 38);
 		btnBeatbox.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 		add(btnBeatbox);
 		
@@ -110,13 +110,13 @@ public class PantallaLugar extends JPanel {
 			}
 		});
 		btnCosplay.setBackground(new Color(255, 128, 192));
-		btnCosplay.setBounds(180, 315, 231, 39);
+		btnCosplay.setBounds(264, 390, 231, 39);
 		btnCosplay.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 		add(btnCosplay);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(PantallaLugar.class.getResource("/imagenes/corazon.png")));
-		lblNewLabel.setBounds(0, 0, 631, 500);
+		lblNewLabel.setBounds(0, 0, 802, 752);
 		add(lblNewLabel);
 	}
 }

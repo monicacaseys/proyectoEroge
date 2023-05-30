@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import clases.Jugador;
@@ -25,11 +26,12 @@ public class Ventana extends JFrame {
     protected Jugador jugador;
 
 	public Ventana() {
-		this.setSize(600, 500);
+		this.setSize(800, 700);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaInicio(this));
 		this.jugador = null; // Inicialmente el jugador es nulo
+		this.setIconImage(new ImageIcon("./icono.png").getImage());
 		this.setVisible(true);
 
 	}
@@ -53,6 +55,17 @@ public class Ventana extends JFrame {
 		    Random random = new Random();
 		    int indiceAleatorio = random.nextInt(Personaje.getTodos().size());
 		    personaje = Personaje.getTodos().get(indiceAleatorio);
+		    //posible sitio para guardar el personaje asociado a un jugador
+		  /*  jugador.agregarPersonaje(indiceAleatorio); // Agregar el nuevo personaje al jugador
+
+		    // Crear un mapa con el personaje y la cantidad
+		    HashMap<Integer, Integer> mapaPersonajes = new HashMap<>();
+		    mapaPersonajes.put(indiceAleatorio, 1);
+
+		    // Guardar los datos del jugador y los personajes en la base de datos
+		    PersonajeDAO personajeDAO = new PersonajeDAO();
+		    personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);*/
+
 		    System.out.println(personaje);
 		    pantallaEscenaActual = new PantallaEscena(this, personaje);
 		    this.setContentPane(pantallaEscenaActual);

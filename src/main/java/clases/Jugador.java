@@ -12,6 +12,10 @@ import utils.PersonajeDAO;
 public class Jugador extends Persona {
 	
 	private String nombreClave;
+	
+	public Jugador(String nombre) throws SQLException {
+		super(nombre); //String nombreClave,
+	}
 	public Jugador(String nombre, int edad, String personalidad, HashSet<Gusto> gustos) throws SQLException {
 		super(nombre, edad, personalidad, gustos); //String nombreClave,
 		// TODO Auto-generated constructor stub
