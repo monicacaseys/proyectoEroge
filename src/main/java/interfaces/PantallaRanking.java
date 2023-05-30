@@ -49,42 +49,44 @@ public class PantallaRanking extends JPanel {
 
 		System.out.println("Estableciendo conexión a la base de datos...");
 
-
 		try {
-            Statement statement = PersonajeDAO.conectar();
-            Connection conexion = statement.getConnection();
-            System.out.println("Conexión establecida correctamente: " + (conexion != null && !conexion.isClosed()));
+			Statement statement = PersonajeDAO.conectar();
+			Connection conexion = statement.getConnection();
+			System.out.println("Conexión establecida correctamente: " + (conexion != null && !conexion.isClosed()));
 
-            if (conexion != null && !conexion.isClosed()) {
-                // Realizar la consulta para obtener los datos necesarios para el ranking
-                System.out.println("Ejecutando consulta...");
+			if (conexion != null && !conexion.isClosed()) {
+				// Realizar la consulta para obtener los datos necesarios para el ranking
+				System.out.println("Ejecutando consulta...");
 
-                String query ="SELECT jugador.nombre AS nombreJugador, personaje.nombre AS nombrePersonaje " +
-                        "FROM jugador " +
-                        "INNER JOIN jugador_personaje ON jugador.id = jugador_personaje.idJugador " +
-                        "INNER JOIN personaje ON jugador_personaje.idPersonaje = personaje.id " +
-                        "ORDER BY jugador_personaje.idJugador ASC";
-                PreparedStatement preparedStatement = conexion.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                System.out.println("Resultados obtenidos: " + resultSet.next());
+				String query = "SELECT jugador.nombre AS nombreJugador, personaje.nombre AS nombrePersonaje "
+						+ "FROM jugador " + "INNER JOIN jugador_personaje ON jugador.id = jugador_personaje.idJugador "
+						+ "INNER JOIN personaje ON jugador_personaje.idPersonaje = personaje.id "
+						+ "ORDER BY jugador_personaje.idJugador ASC";
+				PreparedStatement preparedStatement = conexion.prepareStatement(query);
+				ResultSet resultSet = preparedStatement.executeQuery();
+				System.out.println("Resultados obtenidos: " + resultSet.next());
 
-                while (resultSet.next()) {
-                    // Obtener los datos del jugador y personaje desde el resultado de la consulta
-                    String nombreJugador = resultSet.getString("nombreJugador");
-                    String nombrePersonaje = resultSet.getString("nombrePersonaje");
+				// o hacer un getTodos de esa tabla y hacer el bucle con get todos
 
-                    // Mostrar los datos en el ranking
-                    contenedorElementos.add(new ElementoRancking(ventana, nombreJugador, nombrePersonaje));
-            	    System.out.println("Nombre del jugador: " + nombreJugador);
-                    System.out.println("Nombre del personaje: " + nombrePersonaje);
-                }
+				while (resultSet.next()) { // for(short i=0;i<resultSet.size();i++)
+					// Obtener los datos del jugador y personaje desde el resultado de la consulta
+					String nombreJugador = resultSet.getString("nombreJugador");
+					String nombrePersonaje = resultSet.getString("nombrePersonaje");
 
-                resultSet.close();
-                preparedStatement.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+					// Mostrar los datos en el ranking
+					contenedorElementos.add(new ElementoRancking(ventana, nombreJugador, nombrePersonaje)); // (ventana,
+																											// nombreJugador.get(i),
+																											// nombrePersonaje)
+					System.out.println("Nombre del jugador: " + nombreJugador);
+					System.out.println("Nombre del personaje: " + nombrePersonaje);
+				}
+
+				resultSet.close();
+				preparedStatement.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 

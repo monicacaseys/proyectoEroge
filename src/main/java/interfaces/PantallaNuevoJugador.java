@@ -30,7 +30,7 @@ import javax.swing.JCheckBox;
 import java.awt.Color;
 
 public class PantallaNuevoJugador extends JPanel {
-	
+
 	private Ventana ventana;
 	private JTextField textoNombre;
 	private JTextField textoEdad;
@@ -42,14 +42,10 @@ public class PantallaNuevoJugador extends JPanel {
 	private JCheckBox checkBoxBeatBox;
 	private JCheckBox checkBoxCosplay;
 	private JLabel lblNewLabel_1;
-	
 
-	
 	public PantallaNuevoJugador(Ventana v) {
-		this.ventana=v;
+		this.ventana = v;
 		setLayout(null);
-		
-		
 
 		JLabel tituloDatos = new JLabel("RELLENAME");
 		tituloDatos.setForeground(new Color(0, 0, 0));
@@ -97,7 +93,7 @@ public class PantallaNuevoJugador extends JPanel {
 		labelGustos.setBounds(191, 492, 93, 32);
 		labelGustos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
 		add(labelGustos);
-		
+
 		checkboxPlaya = new JCheckBox("Playa");
 		checkboxPlaya.setFont(new Font("Tahoma", Font.BOLD, 14));
 		checkboxPlaya.setBounds(169, 558, 73, 21);
@@ -113,7 +109,6 @@ public class PantallaNuevoJugador extends JPanel {
 		checkBoxSushi.setBounds(169, 530, 73, 19);
 		add(checkBoxSushi);
 
-		
 		checkBoxPetanca = new JCheckBox("Petanca");
 		checkBoxPetanca.setFont(new Font("Tahoma", Font.BOLD, 14));
 		checkBoxPetanca.setBounds(247, 558, 103, 20);
@@ -129,7 +124,6 @@ public class PantallaNuevoJugador extends JPanel {
 		checkBoxCosplay.setBounds(169, 587, 87, 21);
 		add(checkBoxCosplay);
 
-
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.setBackground(new Color(192, 192, 192));
 		botonAceptar.setBounds(488, 555, 120, 30);
@@ -137,27 +131,30 @@ public class PantallaNuevoJugador extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-		            String nombre = textoNombre.getText();
-                    validarNombre();
-		            int edad = Integer.parseInt(textoEdad.getText());
-		            String personalidad = textoPersonalidad.getText();
-		            HashSet<Gusto> gustos = obtenerGustosSeleccionados(); // Método para obtener los gustos seleccionados
+					String nombre = textoNombre.getText();
+					validarNombre();
+					int edad = Integer.parseInt(textoEdad.getText());
+					String personalidad = textoPersonalidad.getText();
+					HashSet<Gusto> gustos = obtenerGustosSeleccionados(); // Método para obtener los gustos
+																			// seleccionados
 
-		            Jugador nuevoJugador = Jugador.crearNuevoJugador(nombre, edad, personalidad, gustos);
-		            ventana.setJugador(nuevoJugador);
+					Jugador nuevoJugador = Jugador.crearNuevoJugador(nombre, edad, personalidad, gustos);
+					ventana.setJugador(nuevoJugador);
 
-		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Jugador creado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-		        ventana.cambiarAPantalla(PantallaHistoria.class);
+					JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Jugador creado correctamente.",
+							"Confirmación", JOptionPane.INFORMATION_MESSAGE);
+					ventana.cambiarAPantalla(PantallaHistoria.class);
 				} catch (NumberFormatException ex) {
-		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Error: La edad debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-		        } catch (Exception ex) {
-		            JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		        }
-		    }
-			
+					JOptionPane.showMessageDialog(PantallaNuevoJugador.this,
+							"Error: La edad debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(PantallaNuevoJugador.this, "Error: " + ex.getMessage(), "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+
 		});
-		
-		
+
 		botonAceptar.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
 		add(botonAceptar);
 		JButton botonAtras = new JButton("Atrás");
@@ -171,25 +168,21 @@ public class PantallaNuevoJugador extends JPanel {
 		botonAtras.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
 		botonAtras.setBounds(37, 622, 93, 39);
 		add(botonAtras);
-		
-		
+
 		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(PantallaNuevoJugador.class.getResource("/imagenes/bocaaa.png")));
 		lblNewLabel_1.setBounds(-107, -157, 896, 957);
 		add(lblNewLabel_1);
-		
-		
-		
+
 	}
 
-	 private void validarNombre() throws NombreSinNumeros {
-	        String nombre = textoNombre.getText();
-	        if (nombre.matches(".*\\d.*")) {
-	            throw new NombreSinNumeros("El nombre no debe contener números");
-	        }
-	    }
+	private void validarNombre() throws NombreSinNumeros {
+		String nombre = textoNombre.getText();
+		if (nombre.matches(".*\\d.*")) {
+			throw new NombreSinNumeros("El nombre no debe contener números");
+		}
+	}
 
-    
 	private HashSet<Gusto> obtenerGustosSeleccionados() {
 		HashSet<Gusto> gustosSeleccionados = new HashSet<>();
 

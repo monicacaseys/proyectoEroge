@@ -22,7 +22,7 @@ public class ElementoRancking extends JPanel {
 	    System.out.println("Nombre del jugador: " + nombreJugador);
         System.out.println("Nombre del personaje: " + nombrePersonaje);
 			GridBagLayout gridBagLayout = new GridBagLayout();
-			gridBagLayout.columnWidths = new int[]{0, 0, 0, 308, 0};
+			gridBagLayout.columnWidths = new int[]{0, 128, 0, 308, 0};
 			gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 			gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -67,11 +67,11 @@ public class ElementoRancking extends JPanel {
 			gbc_lblNewLabel_1.gridy = 1;
 			add(lblNewLabel_1, gbc_lblNewLabel_1);
 			
-			System.out.println( "x"+nombrePersonaje);
 			
 			ventana=v2;
 			
 	}
+	/*
 	public ElementoRancking(Ventana v, Jugador j,Personaje p) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 308, 0};
@@ -107,7 +107,7 @@ public class ElementoRancking extends JPanel {
 		ventana=v;
 		jugador=j;
 		personaje=p;
-	}
+	}*/
 	}
 	
 	
