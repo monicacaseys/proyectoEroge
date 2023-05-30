@@ -41,9 +41,10 @@ public class PantallaCita extends JPanel{
 		botonContinuar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				  PantallaEscena pantallaEscena = ventana.getPantallaEscenaActual();
 	                if (pantallaEscena != null) {
-	                	int nivelAmorGuardado = pantallaEscena.getNivelAmorGuardado();
+	                	
 	                    if (!personaje.getGustos().contains(gustoElegido)) {
 	                        // El gusto elegido no coincide con los gustos del personaje, aumentar en 20 puntos
 	                        pantallaEscena.aumentarNivelAmor(20);
@@ -51,7 +52,7 @@ public class PantallaCita extends JPanel{
 	                        // El gusto elegido coincide con los gustos del personaje, aumentar en 40 puntos
 	                        pantallaEscena.aumentarNivelAmor(40);
 	                    }
-	                    pantallaEscena.setNivelAmorActual(nivelAmorGuardado);
+	                    pantallaEscena.setNivelAmorActual(ventana.getNivelAmorActual());
 	                    ventana.setContentPane(pantallaEscena);
 	                    ventana.getContentPane().setVisible(true);
 	                }

@@ -25,6 +25,7 @@ public class Ventana extends JFrame {
     protected Personaje personaje;
     protected Jugador jugador;
 
+    private int nivelAmorActual;
 	public Ventana() {
 		this.setSize(800, 700);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,6 +68,10 @@ public class Ventana extends JFrame {
 		    personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);*/
 
 		    System.out.println(personaje);
+		    PantallaEscena pantallaEscena = getPantallaEscenaActual();
+	        if (pantallaEscena != null) {
+	            nivelAmorActual = pantallaEscena.getNivelAmorActual();
+	        }
 		    pantallaEscenaActual = new PantallaEscena(this, personaje);
 		    this.setContentPane(pantallaEscenaActual);
 		}
@@ -107,5 +112,7 @@ public class Ventana extends JFrame {
 	    }
 
 	
-	
+	    public int getNivelAmorActual() {
+	        return nivelAmorActual;
+	    }
 }

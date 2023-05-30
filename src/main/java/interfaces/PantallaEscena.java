@@ -48,8 +48,6 @@ public class PantallaEscena extends JPanel {
 	private JButton botonCita;
 	private JButton botnEscena;
 	private JButton botonCasarse;
-	private int nivelAmorGuardado = 0;
-
 
 	public PantallaEscena(Ventana v, Personaje personaje) {
 		this.ventana = v;
@@ -208,26 +206,12 @@ public class PantallaEscena extends JPanel {
 	}
 	
 	public void aumentarNivelAmor(int puntos ) {
-		nivelAmorGuardado = nivelAmorActual;
 		 nivelAmorActual += puntos;
 	    actualizarNivelAmor();
 	}
 
 
-	  public int getNivelAmorGuardado() {
-		return nivelAmorGuardado;
-	}
-
-	public void setNivelAmorGuardado(int nivelAmorGuardado) {
-		this.nivelAmorGuardado = nivelAmorGuardado;
-	}
-	public void setNivelAmorActual(int nivelAmor) {
-	    this.nivelAmorActual = nivelAmor;
-	    actualizarNivelAmor();
-	}
-
-
-	private void verificarRespuesta(String respuestaSeleccionada) {
+	  private void verificarRespuesta(String respuestaSeleccionada) {
 	        // Verificar respuesta
 	        String respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
 
@@ -267,6 +251,13 @@ public class PantallaEscena extends JPanel {
 	    }
 
 
+	  public int getNivelAmorActual() {
+			return nivelAmorActual;
+		}
+
+		public void setNivelAmorActual(int nivelAmorActual) {
+			this.nivelAmorActual = nivelAmorActual;
+		}
 	private void mostrarModalInformacion() {
 		final JDialog dialogo = new JDialog(ventana, "Información del Personaje", true);
 		dialogo.setSize(300, 300);
@@ -298,4 +289,7 @@ public class PantallaEscena extends JPanel {
 
 		dialogo.setVisible(true);
 	}
+
+	
+	
 }
