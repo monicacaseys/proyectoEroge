@@ -24,8 +24,8 @@ public class Ventana extends JFrame {
     private PantallaEscena pantallaEscenaActual;
     protected Personaje personaje;
     protected Jugador jugador;
-
     private int nivelAmorActual;
+    
 	public Ventana() {
 		this.setSize(800, 700);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -56,23 +56,14 @@ public class Ventana extends JFrame {
 		    Random random = new Random();
 		    int indiceAleatorio = random.nextInt(Personaje.getTodos().size());
 		    personaje = Personaje.getTodos().get(indiceAleatorio);
-		    //posible sitio para guardar el personaje asociado a un jugador
-		  /*  jugador.agregarPersonaje(indiceAleatorio); // Agregar el nuevo personaje al jugador
-
-		    // Crear un mapa con el personaje y la cantidad
-		    HashMap<Integer, Integer> mapaPersonajes = new HashMap<>();
-		    mapaPersonajes.put(indiceAleatorio, 1);
-
-		    // Guardar los datos del jugador y los personajes en la base de datos
-		    PersonajeDAO personajeDAO = new PersonajeDAO();
-		    personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);*/
+		   
 
 		    System.out.println(personaje);
 		    PantallaEscena pantallaEscena = getPantallaEscenaActual();
 	        if (pantallaEscena != null) {
 	            nivelAmorActual = pantallaEscena.getNivelAmorActual();
 	        }
-		    pantallaEscenaActual = new PantallaEscena(this, personaje);
+		    pantallaEscenaActual = new PantallaEscena(this, personaje,nivelAmorActual);
 		    this.setContentPane(pantallaEscenaActual);
 		}
 		
@@ -93,6 +84,11 @@ public class Ventana extends JFrame {
 		this.getContentPane().setVisible(true);
 
 	}
+	
+	 public int getNivelAmorActual() {
+	        return nivelAmorActual;
+	    }
+	 
 	 public void setGustoElegido(Gusto gustoElegido) {
 	        this.gustoElegido = gustoElegido;
 	    }
@@ -112,7 +108,15 @@ public class Ventana extends JFrame {
 	    }
 
 	
-	    public int getNivelAmorActual() {
-	        return nivelAmorActual;
-	    }
+	   
 }
+//posible sitio para guardar el personaje asociado a un jugador
+/*  jugador.agregarPersonaje(indiceAleatorio); // Agregar el nuevo personaje al jugador
+
+  // Crear un mapa con el personaje y la cantidad
+  HashMap<Integer, Integer> mapaPersonajes = new HashMap<>();
+  mapaPersonajes.put(indiceAleatorio, 1);
+
+  // Guardar los datos del jugador y los personajes en la base de datos
+  PersonajeDAO personajeDAO = new PersonajeDAO();
+  personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);*/

@@ -90,43 +90,43 @@ public class PantallaNuevoJugador extends JPanel {
 
 		JLabel labelGustos = new JLabel("GUSTOS");
 		labelGustos.setForeground(new Color(0, 255, 255));
-		labelGustos.setBounds(191, 492, 93, 32);
+		labelGustos.setBounds(540, 383, 93, 32);
 		labelGustos.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
 		add(labelGustos);
 
 		checkboxPlaya = new JCheckBox("Playa");
 		checkboxPlaya.setFont(new Font("Tahoma", Font.BOLD, 14));
-		checkboxPlaya.setBounds(169, 558, 73, 21);
+		checkboxPlaya.setBounds(540, 488, 73, 21);
 		add(checkboxPlaya);
 
 		chekboxCine = new JCheckBox("Cine");
 		chekboxCine.setFont(new Font("Tahoma", Font.BOLD, 14));
-		chekboxCine.setBounds(247, 530, 73, 20);
+		chekboxCine.setBounds(540, 455, 73, 20);
 		add(chekboxCine);
 
 		checkBoxSushi = new JCheckBox("Sushi");
 		checkBoxSushi.setFont(new Font("Tahoma", Font.BOLD, 14));
-		checkBoxSushi.setBounds(169, 530, 73, 19);
+		checkBoxSushi.setBounds(540, 423, 73, 19);
 		add(checkBoxSushi);
 
 		checkBoxPetanca = new JCheckBox("Petanca");
 		checkBoxPetanca.setFont(new Font("Tahoma", Font.BOLD, 14));
-		checkBoxPetanca.setBounds(247, 558, 103, 20);
+		checkBoxPetanca.setBounds(540, 517, 103, 20);
 		add(checkBoxPetanca);
 
 		checkBoxBeatBox = new JCheckBox("Beatboxing");
 		checkBoxBeatBox.setFont(new Font("Tahoma", Font.BOLD, 14));
-		checkBoxBeatBox.setBounds(258, 587, 120, 21);
+		checkBoxBeatBox.setBounds(540, 588, 120, 21);
 		add(checkBoxBeatBox);
 
 		checkBoxCosplay = new JCheckBox("Cosplay");
 		checkBoxCosplay.setFont(new Font("Tahoma", Font.BOLD, 14));
-		checkBoxCosplay.setBounds(169, 587, 87, 21);
+		checkBoxCosplay.setBounds(540, 551, 87, 21);
 		add(checkBoxCosplay);
 
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.setBackground(new Color(192, 192, 192));
-		botonAceptar.setBounds(488, 555, 120, 30);
+		botonAceptar.setBounds(344, 603, 120, 39);
 		botonAceptar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -165,8 +165,8 @@ public class PantallaNuevoJugador extends JPanel {
 			}
 		});
 		botonAtras.setBackground(new Color(192, 192, 192));
-		botonAtras.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
-		botonAtras.setBounds(37, 622, 93, 39);
+		botonAtras.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 18));
+		botonAtras.setBounds(35, 603, 93, 39);
 		add(botonAtras);
 
 		lblNewLabel_1 = new JLabel("");

@@ -19,8 +19,6 @@ public class ElementoRancking extends JPanel {
 	Personaje personaje;
 
 	public ElementoRancking(Ventana v2, String nombreJugador, String nombrePersonaje) {
-	    System.out.println("Nombre del jugador: " + nombreJugador);
-        System.out.println("Nombre del personaje: " + nombrePersonaje);
 			GridBagLayout gridBagLayout = new GridBagLayout();
 			gridBagLayout.columnWidths = new int[]{0, 128, 0, 308, 0};
 			gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};

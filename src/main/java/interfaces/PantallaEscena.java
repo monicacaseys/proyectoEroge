@@ -49,16 +49,17 @@ public class PantallaEscena extends JPanel {
 	private JButton botnEscena;
 	private JButton botonCasarse;
 
-	public PantallaEscena(Ventana v, Personaje personaje) {
+	public PantallaEscena(Ventana v, Personaje personaje, int nivelAmor) {
 		this.ventana = v;
 		this.personaje = personaje;
-
+        this.nivelAmorActual=nivelAmor;
+		
 		setLayout(null);
 
 		labelPersonaje = new JLabel(personaje.getNombre());
 		labelPersonaje.setForeground(new Color(255, 255, 255));
-		labelPersonaje.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
-		labelPersonaje.setBounds(219, 10, 203, 26);
+		labelPersonaje.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
+		labelPersonaje.setBounds(229, 22, 203, 26);
 		add(labelPersonaje);
 
 		nivelAmorActual = personaje.getNivelAmor();
@@ -206,7 +207,7 @@ public class PantallaEscena extends JPanel {
 	}
 	
 	public void aumentarNivelAmor(int puntos ) {
-		 nivelAmorActual += puntos;
+		nivelAmorActual += puntos;
 	    actualizarNivelAmor();
 	}
 

@@ -16,9 +16,15 @@ import java.awt.Color;
 public class PantallaCita extends JPanel{
 	Ventana ventana;
 	private Personaje personaje;
+	private PantallaEscena pantallaEscena;
+	private int nivelAmorSeleccionado;
+
+
 	public PantallaCita(Ventana v,Personaje p) {
 		this.ventana=v;
 		this.personaje=p;
+		this.pantallaEscena = ventana.getPantallaEscenaActual();
+
 		final Gusto gustoElegido = ventana.getGustoElegido();
 		setLayout(null);
 		
