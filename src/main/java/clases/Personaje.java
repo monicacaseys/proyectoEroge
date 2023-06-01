@@ -232,6 +232,8 @@ public class Personaje extends Persona {
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
 	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionales impuestas por la sociedad?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
+	    Pregunta pregunta12 = new Pregunta("¿Hablar sobre el patriarcado y feminismo es bien?",
+	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
 	    
 	    tema.agregarPregunta(pregunta1);
 	    tema.agregarPregunta(pregunta2);
@@ -244,6 +246,7 @@ public class Personaje extends Persona {
 	    tema.agregarPregunta(pregunta9);
 	    tema.agregarPregunta(pregunta10);
 	    tema.agregarPregunta(pregunta11);
+	    tema.agregarPregunta(pregunta12);
 
 	    temas = tema; // Asignar el tema de conversación al personaje
 	}

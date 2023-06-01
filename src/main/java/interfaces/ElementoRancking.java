@@ -45,7 +45,7 @@ public class ElementoRancking extends JPanel {
 			JLabel lblNewLabel = new JLabel("Jugador: "+nombreJugador);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
+			gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel.gridx = 1;
 			gbc_lblNewLabel.gridy = 0;
@@ -55,6 +55,7 @@ public class ElementoRancking extends JPanel {
 			JLabel lblNewLabel_1 = new JLabel("Personaje: "+nombrePersonaje);
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+			gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
 			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_1.gridx = 1;
 			gbc_lblNewLabel_1.gridy = 1;

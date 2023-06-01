@@ -41,6 +41,7 @@ import java.awt.Graphics;
 
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class PantallaEscena extends JPanel {
 	private Ventana ventana;
@@ -62,6 +63,7 @@ public class PantallaEscena extends JPanel {
 	private BufferedImage fondo;
 
 	private Jugador jugador;
+	private JButton botonFinal;
 
 	public PantallaEscena(Ventana v, final Personaje personaje, final Jugador j) {
 		this.ventana = v;
@@ -86,7 +88,7 @@ public class PantallaEscena extends JPanel {
 		labelEnunciado = new JLabel();
 		labelEnunciado.setForeground(new Color(0, 255, 64));
 		labelEnunciado.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-		labelEnunciado.setBounds(20, 419, 678, 85);
+		labelEnunciado.setBounds(24, 444, 723, 72);
 		add(labelEnunciado);
 
 		botonRespuesta1 = new JButton();
@@ -183,7 +185,7 @@ public class PantallaEscena extends JPanel {
 				HashMap<Personaje, Integer> mapaPersonajes = new HashMap<>();
 				mapaPersonajes.put(personaje, 1); // Agregar el personaje con valor
 				personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);
-				// posible sitio para guardar datos en BBDD
+
 				System.out.println("Antes de crear nueva pantalla de escena");
 				ventana.crearNuevaPantallaEscena();
 				System.out.println("Despues de crear nueva pantalla de escena");
@@ -196,7 +198,38 @@ public class PantallaEscena extends JPanel {
 		botnEscena.setBounds(457, 294, 178, 38);
 		botnEscena.setVisible(false); // Inicialmente oculto
 		add(botnEscena);
-		
+
+		botonFinal = new JButton("FRIENDS");
+		botonFinal.setBackground(new Color(255, 128, 255));
+		botonFinal.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
+		botonFinal.setBounds(457, 368, 178, 38);
+		botonFinal.setVisible(false); // Inicialmente oculto
+		add(botonFinal);
+
+		JButton botonSalir = new JButton("Inicio");
+		botonSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaInicio.class);
+			}
+		});
+		botonSalir.setBackground(new Color(0, 0, 0));
+		botonSalir.setForeground(new Color(255, 255, 255));
+		botonSalir.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 13));
+		botonSalir.setBounds(297, 631, 85, 21);
+		add(botonSalir);
+		botonFinal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// guardar persoanje
+				PersonajeDAO personajeDAO = new PersonajeDAO();
+				HashMap<Personaje, Integer> mapaPersonajes = new HashMap<>();
+				mapaPersonajes.put(personaje, 1); // Agregar el personaje con valor
+				personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);
+
+				ventana.cambiarAPantalla(PantallaAmigo.class);
+			}
+		});
 
 		try {
 			fondo = ImageIO.read(getClass().getResource("/imagenes/ff.jpg"));
@@ -204,24 +237,23 @@ public class PantallaEscena extends JPanel {
 			e.printStackTrace();
 		}
 		// Ruta del archivo de sonido
-					String rutaSonido = "/sonidos/hola.wav";
+		String rutaSonido = "/sonidos/hola.wav";
 
-					try {
-					    // Cargar el archivo de sonido
-					    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(rutaSonido));
+		try {
+			// Cargar el archivo de sonido
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(rutaSonido));
 
-					    // Crear el clip de sonido
-					    Clip clip = AudioSystem.getClip();
+			// Crear el clip de sonido
+			Clip clip = AudioSystem.getClip();
 
-					    // Abrir el archivo de sonido en el clip
-					    clip.open(audioInputStream);
+			// Abrir el archivo de sonido en el clip
+			clip.open(audioInputStream);
 
-					    // Reproducir el sonido
-					    clip.start();
-					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-					    e.printStackTrace();
-					}
-
+			// Reproducir el sonido
+			clip.start();
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -250,14 +282,6 @@ public class PantallaEscena extends JPanel {
 			// No quedan más preguntas, juego terminado
 			JOptionPane.showMessageDialog(this, "Has agotado las preguntas...Se termina el juego para ti");
 			System.exit(0);
-
-			/*
-			 * Realizar acciones de finalización del juego PersonajeDAO personajeDAO = new
-			 * PersonajeDAO(); HashMap<Personaje, Integer> mapaPersonajes = new HashMap<>();
-			 * mapaPersonajes.put(personaje, 1); // Agregar el personaje con valor 1
-			 * (representando la cantidad)
-			 * personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);
-			 */
 
 		}
 	}
@@ -294,6 +318,21 @@ public class PantallaEscena extends JPanel {
 			personaje.setNivelAmor(nivelAmorActual);
 			actualizarNivelAmor();
 		}
+		if (nivel >= 1) {
+			PersonajeDAO personajeDAO = new PersonajeDAO();
+			boolean tienePoliamorosos;
+			try {
+				tienePoliamorosos = personajeDAO.tienePersonajePoliamorosoVerdadero();
+				if (tienePoliamorosos) {
+					botonFinal.setVisible(true); // Inicialmente oculto
+				}
+
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+
+			}
+		}
 
 		if (nivel >= 2) {
 			botonCita.setVisible(true);
@@ -325,6 +364,7 @@ public class PantallaEscena extends JPanel {
 				botnEscena.setVisible(true);
 				botonCasarse.setVisible(false);
 			}
+
 		}
 
 		if (nivelAmorActual < 0) {
