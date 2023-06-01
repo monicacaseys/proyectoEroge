@@ -40,6 +40,14 @@ public class PantallaCasarse extends JPanel {
         lblNewLabel.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
         lblNewLabel.setBounds(40, 452, 719, 125);
         add(lblNewLabel);
+        
+        String rutaGif = "/imagenes/petalo.gif";
+		JLabel labelGift = new JLabel(new ImageIcon(getClass().getResource(rutaGif)));
+		labelGift.setBounds(25, 68, 353, 285);
+		add(labelGift);
+		JLabel gif2 = new JLabel(new ImageIcon(getClass().getResource(rutaGif)));
+        gif2.setBounds(386, 68, 359, 285);
+        add(gif2);
 
         // Obtener el nombre del jugador y el nombre del personaje con el que se casa
         String nombreJugador = jugador.getNombre();
@@ -54,7 +62,7 @@ public class PantallaCasarse extends JPanel {
         JLabel lblNewLabel_1 = new JLabel("FIN DE LA AVENTURA");
         lblNewLabel_1.setForeground(new Color(128, 0, 64));
         lblNewLabel_1.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 24));
-        lblNewLabel_1.setBounds(271, 221, 313, 49);
+        lblNewLabel_1.setBounds(97, 417, 313, 49);
         add(lblNewLabel_1);
         
         JButton botonExit = new JButton("EXIT");
@@ -75,6 +83,8 @@ public class PantallaCasarse extends JPanel {
         botonExit.setBounds(634, 543, 111, 49);
         add(botonExit);
         
+        
+        
 
 		try {
             fondo = ImageIO.read(getClass().getResource("/imagenes/bodaa.jpg"));
@@ -82,6 +92,7 @@ public class PantallaCasarse extends JPanel {
             e.printStackTrace();
         }
 
+		
 	}
 
 	 @Override

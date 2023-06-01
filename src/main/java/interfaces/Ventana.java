@@ -63,7 +63,7 @@ public class Ventana extends JFrame {
 	        if (pantallaEscena != null) {
 	            nivelAmorActual = pantallaEscena.getNivelAmorActual();
 	        }
-		    pantallaEscenaActual = new PantallaEscena(this, personaje);
+		    pantallaEscenaActual = new PantallaEscena(this, personaje,jugador);
 		    this.setContentPane(pantallaEscenaActual);
 		}
 		
@@ -110,7 +110,7 @@ public class Ventana extends JFrame {
 		    Random random = new Random();
 		    int indiceAleatorio = random.nextInt(Personaje.getTodos().size());
 		    Personaje personajeNuevo = Personaje.getTodos().get(indiceAleatorio);
-		    PantallaEscena nuevaPantallaEscena = new PantallaEscena(this, personajeNuevo);
+		    PantallaEscena nuevaPantallaEscena = new PantallaEscena(this, personajeNuevo,jugador);
 		    this.setContentPane(nuevaPantallaEscena);
 		 //   pantallaEscenaActual = nuevaPantallaEscena;
 		}

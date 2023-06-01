@@ -220,17 +220,17 @@ public class Personaje extends Persona {
 	            new ArrayList<>(Arrays.asList("Su objetivización", "Estar locas ")), "Su objetivización");
 	    Pregunta pregunta5 = new Pregunta("Cómo podemos fomentar una educación más equitativa e inclusiva?",
 	            new ArrayList<>(Arrays.asList("Porno sin filtros", "Porno filtrado")), "Porno filtrado");
-	    Pregunta pregunta6 = new Pregunta("¿Te parece importante promover el liderazgo feminista en todos los niveles?",
+	    Pregunta pregunta6 = new Pregunta("¿Te parece importante promover el liderazgo feminista?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta7 = new Pregunta("¿Cuál es el papel de la educación en la desmantelación del patriarcado y el heterosexismo?",
+	    Pregunta pregunta7 = new Pregunta("¿Cuál es el papel de la educación en la desmantelación del patriarcado?",
 	            new ArrayList<>(Arrays.asList("No puede hacer nada", "Papel de actor importante")), "Papel de actor importante");
-	    Pregunta pregunta8 = new Pregunta("¿Cómo podemos abordar la violencia de género y garantizar la seguridad de las mujeres?",
+	    Pregunta pregunta8 = new Pregunta("¿Cómo podemos abordar la violencia de género?",
 	            new ArrayList<>(Arrays.asList("Leyes y conscienciación", "Mantenerse al margen")), "Leyes y conscienciación");
 	    Pregunta pregunta9 = new Pregunta("¿Una representación equitativa y diversa en los medios de comunicación?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta10 = new Pregunta("¿Aliarse y apoyar a las personas que luchan contra el patriarcado y el heterosexismo?",
+	    Pregunta pregunta10 = new Pregunta("¿Aliarse y apoyar a las personas que luchan contra el patriarcado?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionale impuestas por el patriarcado y el heterosexismo?",
+	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionales impuestas por la sociedad?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
 	    
 	    tema.agregarPregunta(pregunta1);

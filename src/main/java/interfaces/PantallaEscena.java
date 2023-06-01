@@ -2,6 +2,7 @@ package interfaces;
 
 import javax.swing.JPanel;
 
+import clases.Jugador;
 import clases.Personaje;
 import clases.Pregunta;
 import clases.TemaDeConversacion;
@@ -29,6 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -48,22 +50,25 @@ public class PantallaEscena extends JPanel {
 	private JButton botonMasInfo;
 	private int nivelAmorActual;
 	private byte nivel;
-	
+
 	private JButton botonCita;
 	private JButton botnEscena;
 	private JButton botonCasarse;
 	private BufferedImage fondo;
 
-	public PantallaEscena(Ventana v, Personaje personaje) {
+	private Jugador jugador;
+
+	public PantallaEscena(Ventana v, final Personaje personaje, final Jugador j) {
 		this.ventana = v;
 		this.personaje = personaje;
+		this.jugador = j;
 
 		setLayout(null);
 
 		labelPersonaje = new JLabel(personaje.getNombre());
 		labelPersonaje.setForeground(new Color(255, 255, 255));
 		labelPersonaje.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 25));
-		labelPersonaje.setBounds(229, 22, 203, 43);
+		labelPersonaje.setBounds(229, 22, 377, 43);
 		add(labelPersonaje);
 
 		nivelAmorActual = personaje.getNivelAmor();
@@ -154,9 +159,10 @@ public class PantallaEscena extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				verificarRespuesta(botonRespuesta2.getText());
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+
 			}
 		});
 
@@ -167,6 +173,11 @@ public class PantallaEscena extends JPanel {
 		botnEscena.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+//guardar persoanje
+				PersonajeDAO personajeDAO = new PersonajeDAO();
+				HashMap<Personaje, Integer> mapaPersonajes = new HashMap<>();
+				mapaPersonajes.put(personaje, 1); // Agregar el personaje con valor
+				personajeDAO.guardarDatosJugadorYPersonajes(jugador, mapaPersonajes);
 				// posible sitio para guardar datos en BBDD
 				System.out.println("Antes de crear nueva pantalla de escena");
 				ventana.crearNuevaPantallaEscena();
@@ -180,25 +191,25 @@ public class PantallaEscena extends JPanel {
 		botnEscena.setBounds(457, 294, 178, 38);
 		botnEscena.setVisible(false); // Inicialmente oculto
 		add(botnEscena);
-
 		
 
 		try {
-            fondo = ImageIO.read(getClass().getResource("/imagenes/ff.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+			fondo = ImageIO.read(getClass().getResource("/imagenes/ff.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
-	 @Override
-	    protected void paintComponent(Graphics g) {
-	        super.paintComponent(g);
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 
-	        if (fondo != null) {
-	            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-	        }
-	    }
+		if (fondo != null) {
+			g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		}
+	}
+
 	private void actualizarPregunta() {
 		Pregunta pregunta = personaje.obtenerSiguientePreguntaNoRespondida();
 		if (pregunta != null) {
@@ -269,13 +280,29 @@ public class PantallaEscena extends JPanel {
 			if (!personaje.isPoliamoroso()) {
 				// Personaje no poliamoroso, mostrar botón para casarse y finalizar el juego
 				botonCasarse.setVisible(true);
+				// Verificar si el jugador tiene personajes poliamorosos guardados en la base de
+				// datos
+				PersonajeDAO personajeDAO = new PersonajeDAO();
+				boolean tienePersonajePoliamorosoVerdadero;
+				try {
+					tienePersonajePoliamorosoVerdadero = personajeDAO.tienePersonajePoliamorosoVerdadero();
+					// Mostrar botón "Next" si tiene personaje poliamoroso verdadero guardado
+					if (tienePersonajePoliamorosoVerdadero) {
+						botnEscena.setVisible(true);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			} else {
 				// Personaje poliamoroso, mostrar botón para crear una nueva escena con otro
 				// personaje
 				botnEscena.setVisible(true);
+				botonCasarse.setVisible(false);
 			}
 		}
+
 		if (nivelAmorActual < 0) {
 			System.out.println(personaje.getNombre() + " ha muerto.");
 			ventana.crearNuevaPantallaEscena();

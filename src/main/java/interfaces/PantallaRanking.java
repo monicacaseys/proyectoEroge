@@ -20,6 +20,10 @@ import javax.swing.JScrollPane;
 import clases.Jugador;
 import clases.Personaje;
 import utils.PersonajeDAO;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaRanking extends JPanel {
 	Ventana ventana;
@@ -29,6 +33,8 @@ public class PantallaRanking extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JLabel labelBienvenido = new JLabel("Ranking de Jugadores");
+		labelBienvenido.setBackground(new Color(64, 128, 128));
+		labelBienvenido.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 15));
 		add(labelBienvenido, BorderLayout.NORTH);
 
 		JScrollPane lista = new JScrollPane();
@@ -41,11 +47,27 @@ public class PantallaRanking extends JPanel {
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
 
-		JButton btnNewButton_1 = new JButton("New button");
-		panel.add(btnNewButton_1);
+		JButton botonAtras = new JButton("Atrás");
+		botonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaInicio.class);
+			}
+		});
+		botonAtras.setBackground(new Color(128, 255, 255));
+		botonAtras.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 13));
+		panel.add(botonAtras);
 
-		JButton btnNewButton = new JButton("New button");
-		panel.add(btnNewButton);
+		JButton botonExit = new JButton("Exit");
+		botonExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		botonExit.setBackground(new Color(128, 255, 255));
+		botonExit.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 13));
+		panel.add(botonExit);
 
 		System.out.println("Estableciendo conexión a la base de datos...");
 

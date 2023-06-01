@@ -108,7 +108,28 @@ public class PersonajeDAO {
 			return fila;
 
 		}
+		public boolean tienePersonajePoliamorosoVerdadero() throws SQLException {
+		    Statement smt = conectar();
+		    String consulta = "SELECT COUNT(*) " +
+		                      "FROM jugador_personaje jp " +
+		                      "JOIN personaje p ON jp.idPersonaje = p.id " +
+		                      "WHERE p.poliamoroso = true " +
+		                      "AND jp.idJugador = (SELECT MAX(id) FROM jugador)";
 
+		    try (ResultSet resultSet = smt.executeQuery(consulta)) {
+		        if (resultSet.next()) {
+		            int cantidad = resultSet.getInt(1);
+		            return cantidad > 0; // Verificar si la cantidad es mayor a 0
+		        }
+		    }
+
+		    desconectar(smt);
+		    return false;
+		}
+
+
+
+		
 		public static int insertar(String tabla, HashMap<String, Object> columnas) throws SQLException { 																		
 			
 			Statement smt = conectar();
@@ -178,7 +199,7 @@ public class PersonajeDAO {
 	            HashMap<String, Object> restriccionesJugador = new HashMap<>();
 	            restriccionesJugador.put("nombre", jugador.getNombre());
 	            ArrayList<Object> jugadorExistente = personajeDAO.consultar("jugador", new LinkedHashSet<>(Arrays.asList("id")), restriccionesJugador);
-	            int idJugador = (int) jugadorExistente.get(0);
+	            int idJugador = Integer.parseInt(jugadorExistente.get(0).toString());
 	            
 	            // Guardar los personajes asociados al jugador en la tabla 'jugador-personaje'
 	            for (Map.Entry<Personaje, Integer> entry : mapaPersonajes.entrySet()) {

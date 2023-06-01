@@ -30,17 +30,15 @@ public class PantallaHistoria extends JPanel {
 	   
 	private JLabel historiaLabel;
 	private String[] historia = { //acortar texto
-			"El dia 2 de Abril, en  el planeta Tierra se abrio una brecha que liberó a seres de otra dimensión.",
-		/*	"Estos seres eran diferentes a todo lo que la humanidad había visto antes.",
+			"Hoy, en  el planeta Tierra se abrio una brecha que liberó a seres de otra dimensión.",
 			"Había seres con formas inusuales y criaturas con habilidades sobrenaturales.",
 			"Todos estos seres compartían algo en común",
 			"Su lucha contra el patriarcado y el heterosexismo que dominaba el mundo humano.",
-			"Así nació \"The Breach\", un lugar seguro",
-			"Donde estos seres podían vivir juntos sin ser discriminados por su apariencia.",
+			"Así nació \"Love Gap\", un lugar seguro",
 			"En este mundo encontrarás una gran variedad de personajes únicos y fascinantes.",
 			"A través de tus relaciones, aprenderá más sobre la aceptación de la diversidad sexual.",
-			"¿Estás liste para unirte a esta lucha por la igualdad y la aceptación en \"The Breach\"? ",
-			"¡Que comience el jeugo!"*/ };
+			"¿Estás liste para unirte a esta lucha por la igualdad y la aceptación en \"Love Gap\"? ",
+			"¡Que comience el juego!"};
 	private int indiceParteHistoria = 0;
 
 	public PantallaHistoria(Ventana v) {

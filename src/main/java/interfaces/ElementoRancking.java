@@ -20,7 +20,7 @@ public class ElementoRancking extends JPanel {
 
 	public ElementoRancking(Ventana v2, String nombreJugador, String nombrePersonaje) {
 			GridBagLayout gridBagLayout = new GridBagLayout();
-			gridBagLayout.columnWidths = new int[]{0, 128, 0, 308, 0};
+			gridBagLayout.columnWidths = new int[]{0, 181, 0, 308, 0};
 			gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 			gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -42,23 +42,18 @@ public class ElementoRancking extends JPanel {
 	    
 
 	        
-			JLabel lblNewLabel = new JLabel(""+nombreJugador);
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+			JLabel lblNewLabel = new JLabel("Jugador: "+nombreJugador);
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+			gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
 			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel.gridx = 1;
 			gbc_lblNewLabel.gridy = 0;
 			add(lblNewLabel, gbc_lblNewLabel);
 			
-			JButton btnNewButton = new JButton("New button");
-			GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-			gbc_btnNewButton.gridheight = 3;
-			gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-			gbc_btnNewButton.gridx = 3;
-			gbc_btnNewButton.gridy = 0;
-			add(btnNewButton, gbc_btnNewButton);
 			
-			JLabel lblNewLabel_1 = new JLabel(""+nombrePersonaje);
+			JLabel lblNewLabel_1 = new JLabel("Personaje: "+nombrePersonaje);
+			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_1.gridx = 1;
