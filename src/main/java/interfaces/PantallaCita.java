@@ -9,8 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Color;
 
 public class PantallaCita extends JPanel{
@@ -18,6 +23,7 @@ public class PantallaCita extends JPanel{
 	private Personaje personaje;
 	private PantallaEscena pantallaEscena;
 	private int nivelAmorSeleccionado;
+	private BufferedImage fondo;
 
 
 	public PantallaCita(Ventana v,Personaje p) {
@@ -67,9 +73,21 @@ public class PantallaCita extends JPanel{
 		botonContinuar.setBounds(474, 393, 128, 50);
 		add(botonContinuar);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PantallaCita.class.getResource("/imagenes/llll.jpg")));
-		lblNewLabel.setBounds(0, 0, 800, 790);
-		add(lblNewLabel);
+		
+		try {
+            fondo = ImageIO.read(getClass().getResource("/imagenes/llll.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 	}
+
+	 @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+
+	        if (fondo != null) {
+	            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    }
 }

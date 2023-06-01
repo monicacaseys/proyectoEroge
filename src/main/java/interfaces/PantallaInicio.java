@@ -10,15 +10,22 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import javax.swing.UIManager;
 import java.awt.Color;
+
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 
 public class PantallaInicio extends JPanel {
 	
 	private Ventana ventana;
+	  private BufferedImage fondo;
 	
 	public PantallaInicio(Ventana v) {
 		  this.ventana = v;
@@ -85,17 +92,23 @@ public class PantallaInicio extends JPanel {
 	        gbc_botonExit.gridy = 5;
 	        add(botonExit, gbc_botonExit);
 	        
-	        JLabel fondo = new JLabel(new ImageIcon(PantallaInicio.class.getResource("/imagenes/tierraa.png")));
-			fondo.setLayout(new GridBagLayout());
-			GridBagConstraints gbc_fondo = new GridBagConstraints();
-			gbc_fondo.gridx = 0;
-			gbc_fondo.gridy = 0;
-			gbc_fondo.gridwidth = 3;
-			gbc_fondo.gridheight = 7;
-			gbc_fondo.fill = GridBagConstraints.BOTH;
-			add(fondo, gbc_fondo);
-			
-	}
+
+			try {
+	            fondo = ImageIO.read(getClass().getResource("/imagenes/tierraa.png"));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+
+		}
+
+		 @Override
+		    protected void paintComponent(Graphics g) {
+		        super.paintComponent(g);
+
+		        if (fondo != null) {
+		            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		        }
+		    }
 	
 	
 

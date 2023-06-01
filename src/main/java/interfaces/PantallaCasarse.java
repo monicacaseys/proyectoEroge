@@ -8,11 +8,17 @@ import utils.PersonajeDAO;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
@@ -20,6 +26,7 @@ public class PantallaCasarse extends JPanel {
     private Ventana ventana;
     private Jugador jugador;
     private Personaje personaje;
+    private BufferedImage fondo;
 
     public PantallaCasarse(Ventana v, final Jugador jugador, final Personaje personaje) {
         this.ventana = v;
@@ -68,10 +75,22 @@ public class PantallaCasarse extends JPanel {
         botonExit.setBounds(634, 543, 111, 49);
         add(botonExit);
         
-        JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(PantallaCasarse.class.getResource("/imagenes/bodaa.jpg")));
-        lblNewLabel_2.setBounds(-123, -26, 923, 846);
-        add(lblNewLabel_2);
-    }
+
+		try {
+            fondo = ImageIO.read(getClass().getResource("/imagenes/bodaa.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+	}
+
+	 @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+
+	        if (fondo != null) {
+	            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    }
 }
 

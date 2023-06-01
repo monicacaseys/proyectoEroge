@@ -63,7 +63,7 @@ public class Ventana extends JFrame {
 	        if (pantallaEscena != null) {
 	            nivelAmorActual = pantallaEscena.getNivelAmorActual();
 	        }
-		    pantallaEscenaActual = new PantallaEscena(this, personaje,nivelAmorActual);
+		    pantallaEscenaActual = new PantallaEscena(this, personaje);
 		    this.setContentPane(pantallaEscenaActual);
 		}
 		
@@ -106,9 +106,15 @@ public class Ventana extends JFrame {
 	  public void setJugador(Jugador jugador) {
 	        this.jugador = jugador;
 	    }
+	  public void crearNuevaPantallaEscena() {
+		    Random random = new Random();
+		    int indiceAleatorio = random.nextInt(Personaje.getTodos().size());
+		    Personaje personajeNuevo = Personaje.getTodos().get(indiceAleatorio);
+		    PantallaEscena nuevaPantallaEscena = new PantallaEscena(this, personajeNuevo);
+		    this.setContentPane(nuevaPantallaEscena);
+		 //   pantallaEscenaActual = nuevaPantallaEscena;
+		}
 
-	
-	   
 }
 //posible sitio para guardar el personaje asociado a un jugador
 /*  jugador.agregarPersonaje(indiceAleatorio); // Agregar el nuevo personaje al jugador

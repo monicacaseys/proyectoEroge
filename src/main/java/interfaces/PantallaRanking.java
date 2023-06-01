@@ -58,10 +58,11 @@ public class PantallaRanking extends JPanel {
 				// Realizar la consulta para obtener los datos necesarios para el ranking
 				System.out.println("Ejecutando consulta...");
 
-				String query = "SELECT jugador.nombre AS nombreJugador, personaje.nombre AS nombrePersonaje "
-						+ "FROM jugador " + "INNER JOIN jugador_personaje ON jugador.id = jugador_personaje.idJugador "
-						+ "INNER JOIN personaje ON jugador_personaje.idPersonaje = personaje.id "
-						+ "ORDER BY jugador_personaje.idJugador ASC";
+				String query = "SELECT j.nombre AS nombreJugador, GROUP_CONCAT(p.nombre SEPARATOR ', ') AS nombrePersonaje "
+						+ "FROM jugador j " + "JOIN jugador_personaje jp ON j.id = jp.idJugador "
+						+ "JOIN personaje p ON jp.idPersonaje = p.id "
+						+ "GROUP BY j.id, j.nombre;";
+	
 				PreparedStatement preparedStatement = conexion.prepareStatement(query);
 				ResultSet resultSet = preparedStatement.executeQuery();
 				System.out.println("Resultados obtenidos: " + resultSet.next());

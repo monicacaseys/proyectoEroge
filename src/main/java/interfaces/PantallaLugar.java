@@ -12,15 +12,21 @@ import java.awt.event.ActionEvent;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Color;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class PantallaLugar extends JPanel {
 	Ventana ventana;
 	private JButton btnCine;
 	Gusto gustoElegido;
+	private BufferedImage fondo;
 	public PantallaLugar(Ventana v) {
 		this.ventana=v;
 		
@@ -114,9 +120,21 @@ public class PantallaLugar extends JPanel {
 		btnCosplay.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 		add(btnCosplay);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PantallaLugar.class.getResource("/imagenes/corazon.png")));
-		lblNewLabel.setBounds(0, 0, 802, 752);
-		add(lblNewLabel);
+		try {
+            fondo = ImageIO.read(getClass().getResource("/imagenes/corazon.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 	}
+
+	 @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+
+	        if (fondo != null) {
+	            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    }
+	
 }

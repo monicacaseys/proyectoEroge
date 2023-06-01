@@ -182,6 +182,7 @@ public class Personaje extends Persona {
 	public void morir(Personaje personaje) {
 		if (nivelAmor < 0) {
 			System.out.println(super.getNombre() + " ha muerto.");
+			
 		}
 	}
 
