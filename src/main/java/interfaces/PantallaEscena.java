@@ -12,6 +12,11 @@ import utils.PersonajeDAO;
 import java.awt.GridBagLayout;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -198,6 +203,25 @@ public class PantallaEscena extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		// Ruta del archivo de sonido
+					String rutaSonido = "/sonidos/hola.wav";
+
+					try {
+					    // Cargar el archivo de sonido
+					    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(rutaSonido));
+
+					    // Crear el clip de sonido
+					    Clip clip = AudioSystem.getClip();
+
+					    // Abrir el archivo de sonido en el clip
+					    clip.open(audioInputStream);
+
+					    // Reproducir el sonido
+					    clip.start();
+					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+					    e.printStackTrace();
+					}
+
 
 	}
 
