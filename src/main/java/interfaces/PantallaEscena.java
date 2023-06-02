@@ -319,9 +319,9 @@ public class PantallaEscena extends JPanel {
 			actualizarNivelAmor();
 		}
 		if (nivel >= 1) {
-			PersonajeDAO personajeDAO = new PersonajeDAO();
-			boolean tienePoliamorosos;
 			try {
+				PersonajeDAO personajeDAO = new PersonajeDAO();
+				boolean tienePoliamorosos;
 				tienePoliamorosos = personajeDAO.tienePersonajePoliamorosoVerdadero();
 				if (tienePoliamorosos) {
 					botonFinal.setVisible(true); // Inicialmente oculto
@@ -362,7 +362,7 @@ public class PantallaEscena extends JPanel {
 				// Personaje poliamoroso, mostrar botón para crear una nueva escena con otro
 				// personaje
 				botnEscena.setVisible(true);
-				botonCasarse.setVisible(false);
+				
 			}
 
 		}

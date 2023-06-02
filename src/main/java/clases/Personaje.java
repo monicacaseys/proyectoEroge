@@ -218,7 +218,7 @@ public class Personaje extends Persona {
 	            new ArrayList<>(Arrays.asList("Si", "No")), "No");
 	    Pregunta pregunta4 = new Pregunta("¿Cuál es una barrera para las mujeres en su lucha por la igualdad de género?",
 	            new ArrayList<>(Arrays.asList("Su objetivización", "Estar locas ")), "Su objetivización");
-	    Pregunta pregunta5 = new Pregunta("Cómo podemos fomentar una educación más equitativa e inclusiva?",
+	    Pregunta pregunta5 = new Pregunta("¿Cómo podemos fomentar una educación más equitativa e inclusiva?",
 	            new ArrayList<>(Arrays.asList("Porno sin filtros", "Porno filtrado")), "Porno filtrado");
 	    Pregunta pregunta6 = new Pregunta("¿Te parece importante promover el liderazgo feminista?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
@@ -226,15 +226,21 @@ public class Personaje extends Persona {
 	            new ArrayList<>(Arrays.asList("No puede hacer nada", "Papel de actor importante")), "Papel de actor importante");
 	    Pregunta pregunta8 = new Pregunta("¿Cómo podemos abordar la violencia de género?",
 	            new ArrayList<>(Arrays.asList("Leyes y conscienciación", "Mantenerse al margen")), "Leyes y conscienciación");
-	    Pregunta pregunta9 = new Pregunta("¿Una representación equitativa y diversa en los medios de comunicación?",
+	    Pregunta pregunta9 = new Pregunta("¿Existe una representación equitativa y diversa en los medios de comunicación?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta10 = new Pregunta("¿Aliarse y apoyar a las personas que luchan contra el patriarcado?",
+	    Pregunta pregunta10 = new Pregunta("¿Apoyas la lucha contra el patriarcado?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta11 = new Pregunta("¿Desafiar los roles de género tradicionales impuestas por la sociedad?",
+	    Pregunta pregunta11 = new Pregunta("¿Desafias los roles de género tradicionales impuestas por la sociedad?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    Pregunta pregunta12 = new Pregunta("¿Hablar sobre el patriarcado y feminismo es bien?",
+	    Pregunta pregunta12 = new Pregunta("¿Es bueno hablar sobre el patriarcado y feminismo?",
 	            new ArrayList<>(Arrays.asList("Si", "No")), "Si");
-	    
+	    Pregunta pregunta13 = new Pregunta(" ¿Perrito caliente machista o ensalada heteronormativa?",
+	            new ArrayList<>(Arrays.asList("Perrito caliente machista", "Ensalada heteronormativa")), "Perrito caliente machista");
+	    Pregunta pregunta14 = new Pregunta("Si fuera un videojuego¿cuál sería su nivel más difícil?",
+	            new ArrayList<>(Arrays.asList("Fortaleza del Machismo", "Laberinto de la Heteronorma")), "Laberinto de la Heteronorma");
+	    Pregunta pregunta15 = new Pregunta("¿Cómo podemos desafiar el patriarcado en nuestra vida cotidiana?",
+	            new ArrayList<>(Arrays.asList("Cuestionar roles", "Seguir roles")), "Cuestionar roles");
+	   
 	    tema.agregarPregunta(pregunta1);
 	    tema.agregarPregunta(pregunta2);
 	    tema.agregarPregunta(pregunta3);
@@ -247,6 +253,9 @@ public class Personaje extends Persona {
 	    tema.agregarPregunta(pregunta10);
 	    tema.agregarPregunta(pregunta11);
 	    tema.agregarPregunta(pregunta12);
+	    tema.agregarPregunta(pregunta13);
+	    tema.agregarPregunta(pregunta14);
+	    tema.agregarPregunta(pregunta15);
 
 	    temas = tema; // Asignar el tema de conversación al personaje
 	}

@@ -32,10 +32,10 @@ public class PantallaAmigo extends JPanel {
 	public PantallaAmigo(Ventana v) {
 		this.ventana = v;
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 163, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 58, 62, 27, 0, 0 };
+		gridBagLayout.columnWidths = new int[] { 0, 171, 188, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 41, 39, 58, 62, 27, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JButton botonExit = new JButton("EXIT");
@@ -46,12 +46,22 @@ public class PantallaAmigo extends JPanel {
 				ventana.cambiarAPantalla(PantallaInicio.class);
 			}
 		});
-		botonExit.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 14));
+		
+		JLabel labelTexto = new JLabel("¡HASTA OTRA AVENTURER@!");
+		labelTexto.setForeground(new Color(0, 255, 0));
+		labelTexto.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 24));
+		GridBagConstraints gbc_labelTexto = new GridBagConstraints();
+		gbc_labelTexto.gridwidth = 6;
+		gbc_labelTexto.insets = new Insets(0, 0, 5, 0);
+		gbc_labelTexto.gridx = 0;
+		gbc_labelTexto.gridy = 0;
+		add(labelTexto, gbc_labelTexto);
+		botonExit.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 17));
 		botonExit.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_botonExit = new GridBagConstraints();
 		gbc_botonExit.insets = new Insets(0, 0, 5, 5);
 		gbc_botonExit.gridx = 2;
-		gbc_botonExit.gridy = 3;
+		gbc_botonExit.gridy = 5;
 		add(botonExit, gbc_botonExit);
 
 		try {
@@ -77,7 +87,7 @@ public class PantallaAmigo extends JPanel {
 				String nombrePersonajes = resultSet.getString("nombrePersonaje");
 
 				JLabel lblNewLabel = new JLabel(nombreJugador);
-				lblNewLabel.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 16));
+				lblNewLabel.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 23));
 				lblNewLabel.setForeground(Color.RED);
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.gridwidth = 2;
@@ -88,7 +98,7 @@ public class PantallaAmigo extends JPanel {
 				add(lblNewLabel, gbc_lblNewLabel);
 
 				JLabel lblNewLabel_1 = new JLabel(nombrePersonajes);
-				lblNewLabel_1.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 13));
+				lblNewLabel_1.setFont(new Font("X-Files", Font.BOLD | Font.ITALIC, 20));
 				lblNewLabel_1.setForeground(Color.WHITE);
 				GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 				gbc_lblNewLabel_1.gridwidth = 4;
