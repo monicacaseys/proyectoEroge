@@ -97,7 +97,7 @@ public class PantallaInicio extends JPanel {
 	        }
 
 			// Ruta del archivo de sonido
-			String rutaSonido = "/sonidos/inicio.wav";
+			String rutaSonido = "/sonidos/intro.wav";
 
 			try {
 			    // Cargar el archivo de sonido
